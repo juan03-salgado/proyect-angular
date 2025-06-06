@@ -1,0 +1,35 @@
+.sidebar li {
+  padding: 12px;           
+}
+
+.sidebar {
+  height: 100vh;
+  background-color: #2e4d30;
+  color: white;
+  position: fixed;
+  width: 230px;
+  padding-top: 20px;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+}
+
+.sidebar a:hover {
+  background-color: #3f6b47;
+  border-radius: 5px;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+

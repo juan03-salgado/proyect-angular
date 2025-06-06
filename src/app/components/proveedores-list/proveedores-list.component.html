@@ -1,0 +1,47 @@
+<div class="dashboard-content">
+  <div class="row mb-3">
+    <div class="col-12">
+      <img src="proveedores.jpg" alt="Banner" class="img-fluid top-banner">
+    </div>
+  </div>
+
+  <h2 class="fs-3 fw-bold text-success text-uppercase lh-lg">Listado de proveedores</h2>
+
+  <div class="d-flex justify-content-between mb-3">
+  <a class="btn btn-success bi-plus" [routerLink]="['/proveedores/add']">Agregar proveedor</a>
+  <div class="col-md-4">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Buscar nombre de proveedor" [(ngModel)]="buscarNombreProveedor">
+      <button class="btn btn-success" type="button" (click)="filtrarProveedor()">Buscar</button>
+    </div>
+  </div>
+</div>
+
+  <table class="table table-bordered table-hover border-success table-striped mt-3">
+    <thead>
+      <tr>
+        <th scope="col" class="bi bi-hash me-2"> Id</th>
+        <th scope="col" class="bi-person"> Nombre</th>
+        <th scope="col" class="bi-envelope"> Email</th>
+        <th scope="col" class="bi-telephone"> Teléfono</th>
+        <th scope="col" class="bi-geo-alt"> Ubicación</th>
+        <th scope="col" class="bi-gear"> Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let proveedor of proveedorFiltrado">
+        <th scope="row">{{ proveedor.id }}</th>
+        <td>{{ proveedor.nombre }}</td>
+        <td>{{ proveedor.email }}</td>
+        <td>{{ proveedor.direccion }}</td>
+        <td>{{ proveedor.telefono }}</td>
+        <td>
+          <div class="btn-group" role="group">
+            <a class="btn btn-primary bi-pencil" [routerLink]="['/proveedores/edit', proveedor.id]">Editar</a>
+            <button class="btn btn-danger bi-trash" (click)="deleteProveedores(proveedor.id)">Eliminar</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
