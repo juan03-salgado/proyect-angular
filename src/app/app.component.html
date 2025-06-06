@@ -1,0 +1,49 @@
+<div class="d-flex">
+  <!-- Sidebar -->
+  <div class="sidebar d-flex flex-column align-items-center"  *ngIf= "!obtenerLogin()"> 
+    <img src="usuario.jpg" alt="Avatar" class="avatar mb-2">
+    <h5 class="mb-0">User_admin</h5>
+    <small class="mb-3">Administrador</small>
+    
+    <ul class="nav flex-column w-100 px-3">
+      <li class="nav-item mb-4">
+        <a class="nav-link d-flex align-items-center" [routerLink]="['/home']">
+          <i class="bi bi-house me-2"></i> Inicio
+        </a>
+      </li>
+      <li class="nav-item mb-4">
+        <a class="nav-link d-flex align-items-center" [routerLink]="['/product']">
+          <i class="bi bi-basket me-2"></i> Productos
+        </a>
+      </li>
+      <li class="nav-item mb-4">
+        <a class="nav-link d-flex align-items-center" [routerLink]="['/insumos']">
+          <i class="bi bi-leaf me-2"></i> Insumos
+        </a>
+      </li>
+      <li class="nav-item mb-4">
+        <a class="nav-link d-flex align-items-center" [routerLink]="['/agricultores']">
+          <i class="bi bi-person me-2"></i> Agricultores
+        </a>
+      </li>
+      <li class="nav-item mb-4">
+        <a class="nav-link d-flex align-items-center" [routerLink]="['/proveedores']">
+          <i class="bi bi-people me-2"></i> Proveedores
+        </a>
+      </li>
+      <li class="nav-item mb-4">
+        <a class="nav-link d-flex align-items-center" [routerLink]="['/mercado']">
+          <i class="bi bi-shop me-2"></i> Mercados
+        </a>
+      </li>
+    </ul>
+    <button class="btn bg-danger" style="margin-top: 12rem;" (click)="logout()">
+      Cerrar Sesión
+      <i class="bi bi-box-arrow-right ms-2"></i>
+    </button>
+  </div>
+  <!-- Contenido dinámico -->
+  <div class="flex-grow-1">
+    <router-outlet></router-outlet>
+  </div>
+</div>

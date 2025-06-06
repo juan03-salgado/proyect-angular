@@ -1,0 +1,40 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card shadow-lg p-4 w-100" style="max-width: 600px; margin-left: 130px; background-color: #48c0623f; border: 2px solid #28a792;">
+    <h3 style="color: #198754; text-shadow: 1px 1px 0 #6c757d; text-align: center;">🧰 Actualizar insumo</h3>
+  
+  <form (ngSubmit)="updateInsumo()">
+    <div class="mb-3">
+      <label for="nombre" class="form-label fw-semibold">Nombre del insumo</label>
+      <input type="text" id="nombre" class="form-control" style="border: 2px solid #28a792;" [(ngModel)]="nombre" name="nombre" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="precioUnitario" class="form-label fw-semibold">Precio Unitario</label>
+      <input type="number" id="precioUnitario" class="form-control" style="border: 2px solid #28a792;" [(ngModel)]="precioUnitario" name="precioUnitario" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="descripcion" class="form-label fw-semibold">Descripción</label>
+      <textarea id="descripcion" class="form-control" style="border: 2px solid #28a792;" [(ngModel)]="descripcion" name="descripcion" required></textarea>
+    </div>
+
+     <div class="mb-3">
+      <label for="cantidadDisponible" class="form-label fw-semibold">Cantidad disponible</label>
+      <textarea id="cantidadDisponible" class="form-control" style="border: 2px solid #28a792;" [(ngModel)]="cantidadDisponible" name="cantidadDisponible" required></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="idProveedor" class="form-label fw-semibold">Seleccionar Proveedor</label>
+      <select id="idProveedor" class="form-control" style="border: 2px solid #28a792;" [(ngModel)]="idProveedor" name="idProveedor" required>
+        <option *ngFor="let proveedor of proveedores" [value]="proveedor?.id">
+          {{ proveedor?.nombre }}
+        </option>
+      </select>
+    </div>
+
+    <div class="d-flex justify-content-between">  
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a class="btn btn-secondary" [routerLink]="['/insumos']">Cancelar</a>
+    </div>
+  </form>
+</div>

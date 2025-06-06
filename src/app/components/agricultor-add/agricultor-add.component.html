@@ -1,0 +1,31 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card shadow-lg p-4 w-100" style="max-width: 600px; margin-left: 130px; background-color: #48c0623f; border: 2px solid #28a792;">
+    <h3 style="color: #198754; text-shadow: 1px 1px 0 #6c757d; text-align: center;">👨‍🌾 Agregar agricultor</h3>
+
+  <form (ngSubmit)="addAgricultor()" >
+    <div class="mb-3">
+      <label for="nombre" class="form-label fw-semibold">Nombre</label>
+      <input type="text" id="nombre" class="form-control" style="border: 2px solid #28a792;" [(ngModel)]="nombre" name="nombre" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label fw-semibold">Email</label>
+      <input type="email" id="email" class="form-control" style="border: 2px solid #28a792;" [(ngModel)]="email" name="email" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="telefono" class="form-label fw-semibold">Teléfono</label>
+      <input type="text" id="telefono" class="form-control" style="border: 2px solid #28a792;" [(ngModel)]="telefono" name="telefono" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="ubicacion" class= "form-label fw-semibold">Ubicación</label>
+      <input type="text" id="ubicacion" class="form-control" style="border: 2px solid #28a792;" [(ngModel)]="ubicacion" name="ubicacion" required>
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">  
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a class="btn btn-secondary" [routerLink]="['/agricultores']">Cancelar</a>
+    </div>
+  </form>
+</div>
