@@ -19,12 +19,6 @@ body {
   margin-bottom: 15px;
 }
 
-.acciones-agricultores {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .buscador-id {
   min-width: 300px;
 }
