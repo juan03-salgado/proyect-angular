@@ -27,7 +27,7 @@ export class LoginComponent {
       }).then(() => {
       localStorage.setItem('logeado', 'true');
       this.router.navigate(['/home']);
-      }); 
+    }); 
 
     } else if (this.username === '' || this.password === '') {
       // @ts-ignore
