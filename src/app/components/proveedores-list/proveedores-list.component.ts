@@ -28,7 +28,7 @@ export class ProveedoresListComponent implements OnInit{
     let filtrados = this.proveedores;
     
     if(this.buscarNombreProveedor.trim() !== '') {
-     filtrados = filtrados.filter(i => i.nombre.toString().includes(this.buscarNombreProveedor.trim()));
+     filtrados = filtrados.filter(i => i.nombre.toLowerCase().includes(this.buscarNombreProveedor.trim().toLowerCase()));
     }
     this.proveedorFiltrado = filtrados;
 }
