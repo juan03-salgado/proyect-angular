@@ -3,7 +3,7 @@ import { Productos } from '../../entitys/productos';
 import { ProductosService } from '../../service/productos.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Agricultores } from '../../entitys/agricultores';
+import { Fincas } from '../../entitys/fincas';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -16,8 +16,7 @@ import { FormsModule } from '@angular/forms';
 export class ProductListComponent implements OnInit {
 
   productos: Productos[] = [];
-  mercados: any[] = [];
-  agricultores: any[] = [];
+  fincas: Fincas[] = [];
   buscarNombreProducto: string = '';
   productoFiltrado: Productos[] = [];
 
@@ -25,8 +24,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.listProductos();
-    this.loadMercados();
-    this.loadAgricultores();
+    this.loadFincas();
   }
 
   filtrarProductos(){
@@ -52,40 +50,21 @@ export class ProductListComponent implements OnInit {
     }
 }
   
-  loadAgricultores() {                                             // metodo que nos permite cargar los agricultores
-  this.productosService.getAgricultores().subscribe(               
-    (data: Agricultores[]) => {
-      this.agricultores = data;
-      console.log('Agricultores cargados:', data);
+  loadFincas() {                                             
+  this.productosService.getFincas().subscribe(
+    (data: Fincas[]) => {
+      this.fincas = data;
+      console.log('Fincas cargadas:', data);
     }
     );
     (error: any) => {
-      console.error('Error al cargar los agricultores:', error);
+      console.error('Error al cargar las fincas:', error);
     }
 }
 
-  getNombreAgricultor(id: number): string {                            // este metodo nos permite obtener el nombre del agricultor para mostrarlo en el html 
-  const agricultor = this.agricultores.find(a => a.id === id);
-  return agricultor ? agricultor.nombre : 'Desconocido';
-}
-
-  loadMercados() {
-  this.productosService.getMercados().subscribe(
-    (data: any[]) => {
-      this.mercados = data;
-      console.log('Mercados cargados:', data);
-    },
-    );
-    (error: any) => {
-      console.error('Error al cargar los mercados:', error);
-      alert('No se pudieron cargar los mercados. Verifica la conexión con el servidor.');
-    }
-  
-}
-
-  getNombreMercado(id: number): string {
-  const mercado = this.mercados.find(m => m.id === id);
-  return mercado ? mercado.nombre : 'Desconocido';
+  getNombreFinca(id: number): string {                            
+  const finca = this.fincas.find(a => a.id === id);
+  return finca ? finca.nombre : 'Desconocido';
 }
 
   deleteProductos(id: number){
@@ -111,9 +90,9 @@ export class ProductListComponent implements OnInit {
     });
     }
   });
-}
+};
 
-  editProductos(producto: Productos){
+   editProductos(producto: Productos){
     console.log(producto);
     this.productosService.actualizarProducto(producto).subscribe(
       () => this.listProductos()

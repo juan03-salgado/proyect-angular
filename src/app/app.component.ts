@@ -17,16 +17,23 @@ export class AppComponent {
     return this.router.url === '/login'
   }
 
+  esAdmin(): boolean {
+    return localStorage.getItem('rol') === 'admin';
+  }
+
   logout(): void {
     // @ts-ignore
     Swal.fire({
       position: 'top',
-      title: 'Sesión cerrada',
-      text: 'correctamente',
-      icon: 'success'
-    }).then(() => {                            
-    localStorage.removeItem('logeado');
-    this.router.navigate(['/login']);
+      title: '¿Estás seguro de que deseas cerrar sesión?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar' 
+    }).then((result: any) => {
+      if(result.isConfirmed){
+      localStorage.removeItem('logeado');
+      this.router.navigate(['/login']);
+      }                            
     });
   }
 }

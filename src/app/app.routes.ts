@@ -1,3 +1,38 @@
 import { Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home-admin/home.component';
+import { authGuard } from './guards/auth.guard';
+import { FincasListComponent } from './components/fincas-list/fincas-list.component';
+import { FincasAddComponent } from './components/fincas-add/fincas-add.component';
+import { FincasPutComponent } from './components/fincas-put/fincas-put.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductAddComponent } from './components/product-add/product-add.component';
+import { ProductPutComponent } from './components/product-put/product-put.component';
+import { InsumoListComponent } from './components/insumo-list/insumo-list.component';
+import { InsumoAddComponent } from './components/insumo-add/insumo-add.component';
+import { InsumoPutComponent } from './components/insumo-put/insumo-put.component';
+import { ProveedoresListComponent } from './components/proveedores-list/proveedores-list.component';
+import { ProveedorAddComponent } from './components/proveedor-add/proveedor-add.component';
+import { ProveedorPutComponent } from './components/proveedor-put/proveedor-put.component';
+import { ClientesListComponent } from './components/clientes-list/clientes-list.component';
+import { HomeClienteComponent } from './home/home-cliente/home-cliente.component'; 
 
-export const routes: Routes = [];
+export const routes: Routes = [
+    {path: 'login', component: LoginComponent},  
+    {path: '', redirectTo: 'login', pathMatch: 'full'},
+    {path: 'home/home-cliente', component: HomeClienteComponent, canActivate: [authGuard]},                           
+    {path: 'home/home-admin', component: HomeComponent, canActivate: [authGuard]},                           
+    {path: 'fincas', component: FincasListComponent, canActivate: [authGuard]},                   
+    {path: 'fincas/add', component: FincasAddComponent, canActivate: [authGuard]},                
+    {path: 'fincas/edit/:id', component: FincasPutComponent, canActivate: [authGuard]},           
+    {path: 'product', component: ProductListComponent, canActivate: [authGuard]},                 
+    {path: 'product/add', component: ProductAddComponent, canActivate: [authGuard]},             
+    {path: 'product/edit/:id', component: ProductPutComponent, canActivate: [authGuard]},         
+    {path: 'insumos', component: InsumoListComponent, canActivate: [authGuard]},                  
+    {path: 'insumos/add', component: InsumoAddComponent, canActivate: [authGuard]},             
+    {path: 'insumos/edit/:id', component: InsumoPutComponent, canActivate: [authGuard]},         
+    {path: 'proveedores', component: ProveedoresListComponent, canActivate: [authGuard]},         
+    {path: 'proveedores/add', component: ProveedorAddComponent, canActivate: [authGuard]},      
+    {path: 'proveedores/edit/:id', component: ProveedorPutComponent, canActivate: [authGuard]},
+    {path: 'clientes', component: ClientesListComponent, canActivate: [authGuard]},                   
+];

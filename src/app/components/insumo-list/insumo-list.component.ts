@@ -59,7 +59,7 @@ export class InsumoListComponent implements OnInit {
 
   getNombreProveedor(proveedorId: number): string {
     const proveedor = this.proveedores.find(p => p.id === proveedorId);
-    return proveedor ? proveedor.nombre : '';
+    return proveedor ? proveedor.nombre : 'Desconocido';
   }
 
   deleteInsumo(id: number){

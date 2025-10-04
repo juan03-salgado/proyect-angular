@@ -46,13 +46,6 @@ export class InsumoAddComponent implements OnInit {
   }
 
   addInsumo(){
-    let insumo = new Insumos(this.id, this.nombre, this.precioUnitario, this.descripcion, this.cantidadDisponible, this.idProveedor);
-    console.log(insumo);
-
-    this.insumosService.crearInsumo(insumo).subscribe(
-      data => console.log(data)
-    );
-
     if(!this.nombre || this.precioUnitario <= 0 || !this.descripcion || this.cantidadDisponible <= 0){
     // @ts-ignore
     Swal.fire({
@@ -60,8 +53,15 @@ export class InsumoAddComponent implements OnInit {
       icon: 'error',
       title: 'Ops... algo salio mal',
       text: 'Por favor, complete todos los campos correctamente.',
-    })  
-    } else {
+    });
+      return;
+  }
+    let insumo = new Insumos(this.id, this.nombre, this.precioUnitario, this.descripcion, this.cantidadDisponible, this.idProveedor);
+    console.log(insumo);
+    
+    this.insumosService.crearInsumo(insumo).subscribe(
+      data => console.log(data)
+    );
       // @ts-ignore
       Swal.fire({
         position: 'top',
@@ -72,5 +72,4 @@ export class InsumoAddComponent implements OnInit {
         this.router.navigate(['/insumos']);
       });
     }
-  }
 }

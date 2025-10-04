@@ -2,23 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Productos } from '../entitys/productos';
-import { Agricultores } from '../entitys/agricultores';
+import { Fincas } from '../entitys/fincas';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductosService {
 
-  private api: string = 'http://localhost:8080/api-notas/productos';
+  private api: string = 'http://localhost:3000/productos';
 
   constructor(private http:HttpClient) { }
 
-  getAgricultores(): Observable<Agricultores[]> {
-  return this.http.get<Agricultores[]>('http://localhost:8080/api-notas/agricultores');
-}
-
-  getMercados(): Observable<any[]> {
-  return this.http.get<any[]>('http://localhost:8080/api-notas/mercados');
+  getFincas(): Observable<Fincas[]> {
+  return this.http.get<Fincas[]>('http://localhost:3000/fincas');
 }
 
   getProductos(): Observable<Productos[]> {

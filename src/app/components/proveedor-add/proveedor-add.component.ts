@@ -28,20 +28,22 @@ export class ProveedorAddComponent implements OnInit {
   }
 
   addProveedor(){
-    let proveedor = new Proveedores(this.id, this.nombre, this.email, this.direccion, this.telefono);
-    this.proveedorService.crearProveedor(proveedor).subscribe(
-      data => console.log(data)
-    );
-    
     if(!this.nombre || !this.email || !this.direccion || !this.telefono) {
       // @ts-ignore
-      Swal.fire({
-        position: 'top',
-        icon: 'error',
-        title: 'Oops... Algo salió mal',
-        text: 'Por favor, complete todos los campos requeridos',
-      })
-    } else {
+    Swal.fire({
+      position: 'top',
+      icon: 'error',
+      title: 'Oops... Algo salió mal',
+      text: 'Por favor, complete todos los campos requeridos',
+    });
+      return;
+    }
+    let proveedor = new Proveedores(this.id, this.nombre, this.email, this.direccion, this.telefono);
+    console.log(proveedor)
+    
+    this.proveedorService.crearProveedor(proveedor).subscribe(
+      data => console.log(data)
+    ); 
       // @ts-ignore
       Swal.fire({
         position: 'top',
@@ -53,5 +55,4 @@ export class ProveedorAddComponent implements OnInit {
       });
     }
   }
-}
 

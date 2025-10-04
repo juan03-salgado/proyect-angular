@@ -9,12 +9,12 @@ import { Proveedores } from '../entitys/proveedores';
 })
 export class InsumosService {
 
-  private api: string = 'http://localhost:8080/api-notas/insumos';
+  private api: string = 'http://localhost:3000/insumos';
 
   constructor(private http: HttpClient) { }
 
   getProveedores(): Observable<any>{
-    return this.http.get<Proveedores>('http://localhost:8080/api-notas/proveedores');
+    return this.http.get<Proveedores>('http://localhost:3000/proveedores');
   }
   
   getInsumos(): Observable<Insumos[]>{

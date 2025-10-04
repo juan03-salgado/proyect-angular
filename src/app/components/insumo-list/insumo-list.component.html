@@ -33,7 +33,7 @@
       <tr *ngFor="let insumo of insumoFiltrado">
         <th scope="row">{{ insumo.id }}</th>
         <td>{{ insumo.nombre }}</td>
-        <td>{{ insumo.precioUnitario }}</td>
+        <td>{{ insumo.precioUnitario }}$</td>
         <td>{{ insumo.descripcion }}</td>
         <td>{{ insumo.cantidadDisponible }}</td>
         <td>{{ getNombreProveedor(insumo.proveedorId) }}</td>

@@ -14,14 +14,15 @@ import { CommonModule } from '@angular/common';
 export class ProductPutComponent implements OnInit {
 
   id: number = 0;
+  tipo_producto: string = '';
   nombre: string = '';
-  precioEstimado: number = 0;
   descripcion: string = '';
-  idAgricultor: number = 0;
-  idMercado : number = 0;
+  unidades: number = 0;
+  precio_unidad: number = 0;
+  finca_id: number = 0;
 
-  agricultores: any[] = [];
-  mercados: any[] = [];
+
+  fincas: any[] = [];
 
   constructor(
     private productosService: ProductosService,
@@ -35,31 +36,19 @@ export class ProductPutComponent implements OnInit {
       this.id = id;
       this.loadProducto(this.id);
 
-      this.loadAgricultores();
-      this.loadMercados();
+      this.loadFincas();
     });
   }
 
-  loadAgricultores() {
-    this.productosService.getAgricultores().subscribe(
+  loadFincas() {
+    this.productosService.getFincas().subscribe(
       (data: any[]) => {
-        this.agricultores = data;
-        console.log('Agricultores cargados:', data);
+        this.fincas = data;
+        console.log('Fincas cargadas:', data);
       }
     );
     (error: any) => {
-      console.error('Error al cargar los agricultores:', error);
-    }
-  }
-
-  loadMercados() {
-    this.productosService.getMercados().subscribe(
-      (data: any[]) => {
-        this.mercados = data;
-      }
-    );
-    (error: any) => {
-      console.error('Error al cargar los mercados:', error);
+      console.error('Error al cargar las fincas:', error);
     }
   }
 
@@ -69,11 +58,14 @@ export class ProductPutComponent implements OnInit {
         const producto = data.find(a => a.id === id);
         if (producto) {
           this.id = producto.id;
+          this.tipo_producto = producto.tipo_producto;
           this.nombre = producto.nombre;
-          this.precioEstimado = producto.precioEstimado;
           this.descripcion = producto.descripcion;
-          this.idAgricultor = producto.agricultorId;
-          this.idMercado = producto.mercadoId;
+          this.unidades = producto.unidades;
+          this.precio_unidad = producto.precio_unidad;
+          this.finca_id = producto.finca_id;
+          console.log('Producto cargado:', producto);
+          
         } else {
           console.error('Producto no encontrado');
         }
@@ -84,11 +76,12 @@ export class ProductPutComponent implements OnInit {
   updateProducto() {
   const producto = {
     id: this.id,
+    tipo_producto: this.tipo_producto,
     nombre: this.nombre,
-    precioEstimado: this.precioEstimado,
     descripcion: this.descripcion,
-    agricultorId: this.idAgricultor,
-    mercadoId: this.idMercado
+    unidades: this.unidades,
+    precio_unidad: this.precio_unidad,
+    finca_id: this.finca_id,
   };
 
   console.log(producto); 

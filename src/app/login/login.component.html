@@ -16,15 +16,15 @@
         <form (ngSubmit)="login()">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" id="username" class="form-control" [(ngModel)]="username" name="username" required>
+                <input type="text" id="username" class="form-control" [(ngModel)]="nombre_user" name="username" required>
             </div>
 
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" id="password" class="form-control" [(ngModel)]="password" name="password" required>
+                <input type="password" id="password" class="form-control" [(ngModel)]="contrasena" name="password" required>
                   <span
                 class="eye-icon"
-                onclick="const p = this.previousElementSibling; p.type = p.type === 'password' ? 'text' : 'password';" >
+                onclick="const p = this.previousElementSibling; p.type = p.type === 'contrasena' ? 'text' : 'contrasena';" >
                     👁️
                 </span>
             </div>
