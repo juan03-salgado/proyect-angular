@@ -1,0 +1,47 @@
+<div class="dashboard-content">
+  <div class="row mb-3">
+    <div class="col-12">
+      <img src="agricultor.jpg" alt="Banner" class="img-fluid top-banner">
+    </div>
+  </div>
+
+  <h2 class="fs-3 fw-bold text-success text-uppercase lh-lg">Listado de agricultores</h2>
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+  <a class="btn btn-success bi-plus" [routerLink]="['/agricultor/add']">Agregar agricultor</a>
+  <div class="col-md-4">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Buscar agricultor por nombre" [(ngModel)]="buscarNombreAgricultor">
+      <button class="btn btn-success" type="button" (click)="filtrarAgricultor()">Buscar</button>
+    </div>
+  </div>
+</div>
+  
+  <table class="table table-bordered table-hover border-success table-striped mt-3">
+    <thead>
+      <tr>
+        <th scope="col" class="bi bi-hash me-2"> Id</th>
+        <th scope="col" class="bi-person"> Nombre</th>
+        <th scope="col" class="bi-envelope"> Email</th>
+        <th scope="col" class="bi-telephone"> Teléfono</th>
+        <th scope="col" class="bi-geo-alt"> Ubicación</th>
+        <th scope="col" class="bi-gear"> Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let agricultor of agricultorFiltrado">       
+        <th scope="row">{{ agricultor.id }}</th>           
+        <td>{{ agricultor.nombre }}</td>
+        <td>{{ agricultor.email }}</td>
+        <td>{{ agricultor.telefono }}</td>
+        <td>{{ agricultor.ubicacion }}</td>
+        <td>
+          <div class="btn-group" role="group">
+            <a class="btn btn-primary bi-pencil" [routerLink]="['/agricultor/edit', agricultor.id]">Editar</a>
+            <button class="btn btn-danger bi-trash" (click)="deleteAgricultor(agricultor.id)">Eliminar</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
