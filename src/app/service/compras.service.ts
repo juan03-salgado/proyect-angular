@@ -1,0 +1,26 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Compras } from '../entitys/compras';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ComprasService {
+
+  private api: string = 'http://localhost:3000/compras'
+
+  constructor(private http: HttpClient) { }
+
+  getCompras(): Observable<Compras[]>{
+    return this.http.get<Compras[]>(this.api)
+  }
+    
+  RealizarCompra(comprar: Compras): Observable<Compras> {
+    return this.http.post<Compras>(this.api, comprar);
+  }
+    
+  eliminarCompra(id: number): Observable<any> {
+    return this.http.delete(`${this.api}/${id}`);
+  }
+}

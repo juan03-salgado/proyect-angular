@@ -21,7 +21,11 @@ export class AppComponent {
     return localStorage.getItem('rol') === 'admin';
   }
 
-  logout(): void {
+  esUsuario(): boolean {
+    return localStorage.getItem('rol') === 'user';
+  }
+
+  logoutAdmin(): void {
     // @ts-ignore
     Swal.fire({
       position: 'top',
@@ -32,6 +36,24 @@ export class AppComponent {
     }).then((result: any) => {
       if(result.isConfirmed){
       localStorage.removeItem('logeado');
+      localStorage.removeItem('rol');
+      this.router.navigate(['/login']);
+      }                            
+    });
+  }
+
+  logoutUsuario(): void {
+    // @ts-ignore
+    Swal.fire({
+      position: 'top',
+      title: '¿Estás seguro de que deseas cerrar sesion?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar' 
+    }).then((result: any) => {
+      if(result.isConfirmed){
+      localStorage.removeItem('logeado');
+      localStorage.removeItem('rol');
       this.router.navigate(['/login']);
       }                            
     });

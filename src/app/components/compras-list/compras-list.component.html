@@ -1,0 +1,39 @@
+<div class="dashboard-content">
+  <div class="row mb-3">
+    <div class="col-12">
+      <img src="ventas.jpg" alt="Banner" class="img-fluid top-banner">
+    </div>
+  </div>
+
+  <h2 class="fs-3 fw-bold text-success text-uppercase lh-lg">Compras realizadas</h2>
+  
+  <div class="d-flex justify-content-between mb-3">
+    <div class="col-md-4">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Buscar id de la compra" [(ngModel)]="buscarCompra">
+        <button class="btn btn-success" type="button" (click)="filtrarCompra()">Buscar</button>
+      </div>
+    </div>
+  </div>  
+
+  <table class="table table-bordered table-hover border-success table-striped mt-3">
+    <thead>
+      <tr>
+        <th scope="col" class="bi bi-hash me-2"> Id</th>
+        <th scope="col" class="bi bi-person-vcard"> Id_carrito</th>
+        <th scope="col" class="bi-gear"> Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let compra of compraFiltrada">
+        <th scope="row">{{ compra.id }}</th>
+        <td>{{ compra.id_carrito }}</td>
+        <td>
+          <div class="btn-group" role="group">
+            <button class="btn btn-danger bi-trash" (click)="deleteCompra(compra.id)">Eliminar</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

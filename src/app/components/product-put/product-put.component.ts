@@ -21,8 +21,8 @@ export class ProductPutComponent implements OnInit {
   precio_unidad: number = 0;
   finca_id: number = 0;
 
-
   fincas: any[] = [];
+  categorias: string[] = ['Vegetales', 'Frutas', 'Carnes', 'Lacteos']
 
   constructor(
     private productosService: ProductosService,

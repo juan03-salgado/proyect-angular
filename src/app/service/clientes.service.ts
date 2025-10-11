@@ -36,5 +36,4 @@ export class ClientesService {
   eliminarClienteId(id: number): Observable<any>{
     return this.http.delete(`${this.api}/${id}`);
   }
-
 }

@@ -71,7 +71,6 @@ export class FincasListComponent implements OnInit {
     }
   });
 }
-
   editFinca(fincas: Fincas) {
     console.log(fincas);                                                
     this.fincasService.actualizarFinca(fincas).subscribe(    

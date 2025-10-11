@@ -10,11 +10,17 @@
   <div class="d-flex justify-content-between mb-3">
     <a class="btn btn-success bi-plus" [routerLink]="['/product/add']">Agregar producto</a>
     <div class="col-md-4">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Buscar nombre de producto" [(ngModel)]="buscarNombreProducto">
-        <button class="btn btn-success" type="button" (click)="filtrarProductos()">Buscar</button>
-      </div>
-    </div>
+    <div class="input-group">
+      <select class="form-select" [(ngModel)]="buscarTipoProducto">
+        <option value="">Todas las categorías</option>
+        <option value="Vegetales">Vegetales</option>
+        <option value="Frutas">Frutas</option>
+        <option value="Carnes">Carnes</option>
+        <option value="Lacteos">Lacteos</option>
+      </select>
+    <button class="btn btn-success" type="button" (click)="filtrarProductos()">Buscar</button>
+  </div>
+</div>
   </div>  
 
   <table class="table table-bordered table-hover border-success table-striped mt-3">
