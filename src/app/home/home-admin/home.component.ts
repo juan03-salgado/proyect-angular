@@ -6,6 +6,7 @@ import { InsumosService } from '../../service/insumos.service';
 import { ProveedoresService } from '../../service/proveedores.service';
 import { CommonModule } from '@angular/common';
 import { ClientesService } from '../../service/clientes.service';
+import { ComprasService } from '../../service/compras.service';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,7 @@ export class HomeComponent {
   totalFincas: number = 0;
   totalProveedores: number = 0;
   totalClientes: number = 0;
+  totalCompras: number = 0;
 
   constructor( 
     private productosService: ProductosService,
@@ -29,6 +31,7 @@ export class HomeComponent {
     private fincasService: FincasService,
     private proveedoresService: ProveedoresService,
     private clientesService: ClientesService,
+    private comprasService: ComprasService,
     private router: Router
   ) 
     { }
@@ -40,6 +43,7 @@ export class HomeComponent {
     this.fincasService.getFincas().subscribe(fincas => {this.totalFincas = fincas.length;});
     this.proveedoresService.getProveedores().subscribe(proveedores => {this.totalProveedores = proveedores.length;});
     this.clientesService.getClientes().subscribe(clientes => {this.totalClientes = clientes.length;});
+    this.comprasService.getCompras().subscribe(compras => {this.totalCompras = compras.length;})
   }
 
   logout(): void {

@@ -4,9 +4,14 @@
     
   <form (ngSubmit)="updateProducto()">
         <div class="mb-3">
-      <label for="tipo_producto" class="form-label fw-semibold">Tipo de producto</label>
-      <input type="text" id="tipo_producto" class="form-control" style="border: 2px solid #28a792;" [(ngModel)]="tipo_producto" name="tipo_producto" required>
-    </div>
+    <label for="tipo_producto" class="form-label fw-semibold">Tipo de producto</label>
+    <select id="tipo_producto" class="form-control" style="border: 2px solid #28a792;" [(ngModel)]="tipo_producto" name="tipo_producto" required>
+    <option value="">Seleccione una categoría</option>
+    <option *ngFor="let categoria of categorias" [value]="categoria">
+      {{ categoria }}
+    </option>
+  </select>
+</div>
 
     <div class="mb-3">
       <label for="nombre" class="form-label fw-semibold">Nombre del Producto</label>

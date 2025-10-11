@@ -25,6 +25,7 @@ export class ProductAddComponent implements OnInit{
   finca_id: number = 0;
 
   fincas: Fincas[] = [];
+  categorias: string[] = ['Vegetales', 'Frutas', 'Carnes', 'Lacteos']
 
   constructor(private productosService: ProductosService,
     private router: Router,   

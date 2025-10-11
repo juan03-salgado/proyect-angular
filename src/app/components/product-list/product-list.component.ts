@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit {
 
   productos: Productos[] = [];
   fincas: Fincas[] = [];
-  buscarNombreProducto: string = '';
+  buscarTipoProducto: string = '';
   productoFiltrado: Productos[] = [];
 
   constructor(private productosService: ProductosService) { }
@@ -30,13 +30,12 @@ export class ProductListComponent implements OnInit {
   filtrarProductos(){
     let filtrados = this.productos;
 
-    if (this.buscarNombreProducto.trim() !== '') {
-      filtrados = filtrados.filter(i => i.nombre.toLowerCase().includes(this.buscarNombreProducto.trim().toLowerCase()));
+    if (this.buscarTipoProducto.trim() !== '') {
+      filtrados = filtrados.filter(i => i.tipo_producto.toLowerCase().includes(this.buscarTipoProducto.trim().toLowerCase()));
     } 
     this.productoFiltrado = filtrados;
   }
   
-
   listProductos() {
   this.productosService.getProductos().subscribe(
     (data: Productos[]) => {
@@ -92,7 +91,7 @@ export class ProductListComponent implements OnInit {
   });
 };
 
-   editProductos(producto: Productos){
+  editProductos(producto: Productos){
     console.log(producto);
     this.productosService.actualizarProducto(producto).subscribe(
       () => this.listProductos()

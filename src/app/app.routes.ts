@@ -16,6 +16,8 @@ import { ProveedorAddComponent } from './components/proveedor-add/proveedor-add.
 import { ProveedorPutComponent } from './components/proveedor-put/proveedor-put.component';
 import { ClientesListComponent } from './components/clientes-list/clientes-list.component';
 import { HomeClienteComponent } from './home/home-cliente/home-cliente.component'; 
+import { CarritoProductosListComponent } from './components/carrito-productos-list/carrito-productos-list.component';
+import { ComprasListComponent } from './components/compras-list/compras-list.component';
 
 export const routes: Routes = [
     {path: 'login', component: LoginComponent},  
@@ -34,5 +36,7 @@ export const routes: Routes = [
     {path: 'proveedores', component: ProveedoresListComponent, canActivate: [authGuard]},         
     {path: 'proveedores/add', component: ProveedorAddComponent, canActivate: [authGuard]},      
     {path: 'proveedores/edit/:id', component: ProveedorPutComponent, canActivate: [authGuard]},
-    {path: 'clientes', component: ClientesListComponent, canActivate: [authGuard]},                   
+    {path: 'clientes', component: ClientesListComponent, canActivate: [authGuard]},
+    {path: 'compras', component: ComprasListComponent, canActivate: [authGuard]},
+    {path: 'carritoProductos', component: CarritoProductosListComponent, canActivate: [authGuard]},                   
 ];

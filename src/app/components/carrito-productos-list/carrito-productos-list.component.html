@@ -1,0 +1,54 @@
+<div class="container my-5 justify-content-center">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm border-success border-2">
+        <div class="card-body">
+          <h4 class="text-success mb-4">Carrito de Compras</h4>
+
+    <table class="table align-middle table-hover table-striped">
+      <thead class="table-light border-bottom">
+        <tr>
+          <th class="text-center">Producto</th>
+          <th class="text-center">Cantidad</th>
+          <th class="text-center">Precio unidad</th>
+          <th class="text-center">Precio total</th>
+          <th class="text-center">Cancelar</th>
+        </tr>
+      </thead>
+    <tbody>
+      <tr *ngFor="let producto of productosCarrito">
+        <td class="text-center">{{ getNombreProducto(producto.id_producto) }}</td>
+        <td class="text-center">{{ producto.cantidad }}</td>
+        <td class="text-center">${{ getPrecioUnidad(producto.id_producto) }}</td>
+        <td class="text-center">${{ producto.precio_total }}</td>
+        <td class="text-center">
+          <button class="btn btn-outline-danger"(click)="deleteProductoCarrito(producto.id)"><i class="bi bi-x-circle-fill"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+    </div>
+  </div>
+</div>
+
+<div class="card border-success border-2" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title border-bottom border-dark pb-2 mb-3">Resumen del pedido</h5>
+
+    <div *ngFor="let producto of productosCarrito" class="d-flex justify-content-between mb-2">
+        <span>{{ getNombreProducto(producto.id_producto) }}</span>
+        <span>${{ producto.precio_total }}</span>
+    </div>
+
+    <div class="d-flex justify-content-between border-top pt-3 fw-bold">
+      <span>Total</span>
+      <span><i class="bi-currency-dollar"></i>{{precioTotalCarrito()}}</span>
+    </div>
+
+    <a class="btn btn-success w-100 mt-4" (click)="realizarCompra()">Realizar el pago</a>
+    <div class="d-flex justify-content-center mt-3 px-2"> <button class="btn btn-light" [routerLink]="['/home/home-cliente']">Volver a la tienda</button> 
+    </div>
+  </div>
+</div>
+  
+  
