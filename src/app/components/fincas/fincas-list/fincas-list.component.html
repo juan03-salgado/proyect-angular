@@ -1,0 +1,47 @@
+<div class="dashboard-content">
+  <div class="row mb-3">
+    <div class="col-12">
+      <img src="agricultor.jpg" alt="Banner" class="img-fluid top-banner">
+    </div>
+  </div>
+
+  <h2 class="fs-3 fw-bold text-success text-uppercase lh-lg">Listado de fincas</h2>
+
+  <div class="d-flex justify-content-between mb-3">
+  <a class="btn btn-success bi-plus" [routerLink]="['/fincas/add']">Agregar fincas</a>
+  <div class="col-md-4">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Buscar finca por nombre" [(ngModel)]="buscarNombreFinca">
+      <button class="btn btn-success" type="button" (click)="filtrarFinca()">Buscar</button>
+    </div>
+  </div>
+</div>
+  
+<table class="table table-bordered table-hover border-success table-striped mt-3">
+    <thead>
+      <tr>
+        <th scope="col" class="bi bi-hash me-2"> Id</th>
+        <th scope="col" class="bi-house"> Nombre</th>
+        <th scope="col" class="bi-envelope"> Email</th>
+        <th scope="col" class="bi-telephone"> Teléfono</th>
+        <th scope="col" class="bi-geo-alt"> Ubicación</th>
+        <th scope="col" class="bi-gear"> Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let finca of fincasFiltradas">       
+        <th scope="row">{{ finca.id }}</th>           
+        <td>{{ finca.nombre }}</td>
+        <td>{{ finca.email }}</td>
+        <td>{{ finca.telefono }}</td>
+        <td>{{ finca.ubicacion }}</td>
+        <td>
+          <div class="btn-group" role="group">
+            <a class="btn btn-primary bi-pencil" [routerLink]="['/fincas/edit', finca.id]">Editar</a>
+            <button class="btn btn-danger bi-trash" (click)="deleteFinca(finca.id)">Eliminar</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

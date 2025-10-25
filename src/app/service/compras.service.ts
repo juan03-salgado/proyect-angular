@@ -15,6 +15,10 @@ export class ComprasService {
   getCompras(): Observable<Compras[]>{
     return this.http.get<Compras[]>(this.api)
   }
+
+  getComprasId(id: number): Observable<Compras[]>{
+    return this.http.get<Compras[]>(`${this.api}/${id}`);
+  }
     
   RealizarCompra(comprar: Compras): Observable<Compras> {
     return this.http.post<Compras>(this.api, comprar);

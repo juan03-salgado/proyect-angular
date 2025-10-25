@@ -21,16 +21,26 @@
       <tr>
         <th scope="col" class="bi bi-hash me-2"> Id</th>
         <th scope="col" class="bi bi-person-vcard"> Id_carrito</th>
+        <th scope="col" class="bi bi-person"> Cliente</th>
+        <th scope="col" class="bi bi-cart"> Productos comprados</th>
         <th scope="col" class="bi-gear"> Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let compra of compraFiltrada">
-        <th scope="row">{{ compra.id }}</th>
+        <th scope="row">{{ compra.id_compra }}</th>
         <td>{{ compra.id_carrito }}</td>
+        <td>{{ compra.cliente }}</td>
+        <td>
+          <div class="d-flex flex-wrap gap-2">
+            <span *ngFor="let p of compra.productos" class="badge bg-success text-light fs-6 py-2 px-1">
+              {{ p.producto }} - {{ p.cantidad }} und ({{ p.precio_total | currency:'COP ':'symbol':'1.0-0' }})
+            </span>
+          </div>
+        </td>
         <td>
           <div class="btn-group" role="group">
-            <button class="btn btn-danger bi-trash" (click)="deleteCompra(compra.id)">Eliminar</button>
+            <button class="btn btn-danger bi-trash" (click)="deleteCompra(compra.id_compra)">Eliminar</button>
           </div>
         </td>
       </tr>

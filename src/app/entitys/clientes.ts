@@ -4,6 +4,6 @@ export class Clientes {
         public nombre: string,
         public direccion: string,
         public telefono: string,
-        public id_user: number
+        public rol: string
     ) {}
 }

@@ -3,12 +3,20 @@
 }
 
 .sidebar {
+  width: 230px;
   height: 100vh;
   background-color: #2e4d30;
   color: white;
   position: fixed;
-  width: 230px;
+  overflow-y: auto;          
   padding-top: 20px;
+}
+
+@media (max-width: 992px) {
+  .dashboard-content {
+    width: calc(100% - 230px);
+    margin-left: 230px;
+  }
 }
 
 .sidebar a {
@@ -32,4 +40,5 @@
   object-fit: cover;
   border: 2px solid #fff;
 }
+
 

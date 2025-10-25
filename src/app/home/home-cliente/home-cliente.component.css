@@ -1,9 +1,9 @@
 .card {
   margin: 10px;   
   border-radius: 12px; 
-  width: 25rem;
+  width: 100%;          
+  max-width: 25rem;    
 }
-
 .card-text {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
@@ -20,6 +20,20 @@
   object-position: center 45%;
   border-radius: 15px;
 }
+
+@media (max-width: 992px) {
+  .card {
+    max-width: 22rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    max-width: 20rem;
+  }
+}
+
+
 
 
 
