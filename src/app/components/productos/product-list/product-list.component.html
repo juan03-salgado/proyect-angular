@@ -1,0 +1,57 @@
+<div class="dashboard-content">
+  <div class="row mb-3">
+    <div class="col-12">
+      <img src="productos.jpg" alt="Banner" class="img-fluid top-banner">
+    </div>
+  </div>
+
+  <h2 class="fs-3 fw-bold text-success text-uppercase lh-lg">Listado de productos agricolas</h2>
+  
+  <div class="d-flex justify-content-between mb-3">
+    <a class="btn btn-success bi-plus" [routerLink]="['/product/add']">Agregar producto</a>
+    <div class="col-md-4">
+    <div class="input-group">
+      <select class="form-select" [(ngModel)]="buscarTipoProducto">
+        <option value="">Todas las categorías</option>
+        <option value="Vegetales">Vegetales</option>
+        <option value="Frutas">Frutas</option>
+        <option value="Carnes">Carnes</option>
+        <option value="Lacteos">Lacteos</option>
+      </select>
+    <button class="btn btn-success" type="button" (click)="filtrarProductos()">Buscar</button>
+  </div>
+</div>
+  </div>  
+
+  <table class="table table-bordered table-hover border-success table-striped mt-3">
+    <thead>
+      <tr>
+        <th scope="col" class="bi bi-hash me-2"> Id</th>
+        <th scope="col" class="bi-box-seam"> Tipo de producto</th>
+        <th scope="col" class="bi bi-basket"> Nombre</th>
+        <th scope="col" class="bi-file-earmark-text"> Descripción</th>
+        <th scope="col" class="bi-box"> Unidades</th>
+        <th scope="col" class="bi-cash"> Precio unidad</th>
+        <th scope="col" class="bi-house"> Finca</th>
+        <th scope="col" class="bi-gear"> Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of productoFiltrado">
+        <th scope="row">{{ producto.id }}</th>
+        <td>{{ producto.tipo_producto }}</td>
+        <td>{{ producto.nombre }}</td>
+        <td>{{ producto.descripcion }}</td>
+        <td>{{ producto.unidades }}</td>
+        <td>{{ producto.precio_unidad }}$</td>   
+        <td>{{ getNombreFinca(producto.finca_id) }}</td>
+        <td>
+          <div class="btn-group" role="group">
+            <a class="btn btn-primary bi-pencil" [routerLink]="['/product/edit', producto.id]">Editar</a>
+            <button class="btn btn-danger bi-trash" (click)="deleteProductos(producto.id)">Eliminar</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

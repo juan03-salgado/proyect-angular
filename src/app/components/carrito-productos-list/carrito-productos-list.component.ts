@@ -2,15 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { carritoProductos } from '../../entitys/carritoProductos';
 import { CarritoProductosService } from '../../service/carrito-productos.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { Productos } from '../../entitys/productos';
-import { ProductosService } from '../../service/productos.service';
 import { Compras } from '../../entitys/compras';
 import { ComprasService } from '../../service/compras.service';
 
 @Component({
   selector: 'app-carrito-productos-list',
+  standalone: true,
   imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './carrito-productos-list.component.html',
   styleUrl: './carrito-productos-list.component.css'
@@ -18,18 +17,16 @@ import { ComprasService } from '../../service/compras.service';
 export class CarritoProductosListComponent implements OnInit {
 
   productosCarrito: carritoProductos[] = [];
-  productos: Productos[] = [];
   compras: Compras[] = [];
 
   constructor(private productosCarritoService: CarritoProductosService,
-    private productosService: ProductosService,
-    private comprarService: ComprasService
+    private comprarService: ComprasService,
+    private router: Router
   ){
   }
 
   ngOnInit(): void {
     this.listCarritoProductos();
-    this.loadProductos();
   }
 
   listCarritoProductos(){
@@ -44,55 +41,59 @@ export class CarritoProductosListComponent implements OnInit {
     }
   }
 
-   loadProductos() {                                             
-    this.productosService.getProductos().subscribe(
-      (data: Productos[]) => {
-        this.productos = data;
-        console.log('Productos cargados:', data);
-      }
-      );
-      (error: any) => {
-        console.error('Error al cargar los productos:', error);
-      }
-  }
-
   precioTotalCarrito(){
     return this.productosCarrito.reduce((total, producto) => total + producto.precio_total, 0);
   }
 
-  realizarCompra(){
-    let compra = new Compras(0, 1);
-    this.comprarService.RealizarCompra(compra).subscribe({
+  realizarCompra() {
+  if (!this.productosCarrito || this.productosCarrito.length === 0) {
+    // @ts-ignore
+    Swal.fire({
+      position: 'top',
+      icon: 'error',
+      title: 'No hay productos en el carrito',
+    });
+    return;
+  }
+  //@ts-ignore
+   Swal.fire({
+    position: 'top',
+    title: '¿Deseas confirmar tu compra?',
+    text: 'Se realizará la compra de los productos seleccionados',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'Sí, comprar',
+    cancelButtonText: 'Cancelar',
+  }).then((result: any) => {
+    if (result.isConfirmed) {
+      let compra = new Compras(0, 1, this.productosCarrito as any);
+
+      this.comprarService.RealizarCompra(compra).subscribe({
       next: (res) => {
-        console.log(res)
-        this.listCarritoProductos();
+        const idCompra = res.id_compra;
+        this.router.navigate(['/factura'], {state: {idCompra, productos: this.productosCarrito}})
+        
         // @ts-ignore
         Swal.fire({
         position: 'top',
-        title: 'Se ha realizado la compra con exito',
-        icon: 'success'
-      })
-    }, 
+        icon: 'success',
+        title: 'Compra realizada con éxito',
+    });
+      this.listCarritoProductos();
+    },
       error: (err) => {
-      console.error(err.error)
-        // @ts-ignore
+      console.error(err);
+          // @ts-ignore
         Swal.fire({
         position: 'top',
-        title: 'Error al realizar la compra',
-        icon: 'error'
+        icon: 'error',
+        title: 'Error al procesar la compra',
+        text: 'Inténtalo nuevamente más tarde.',
+        });
+      }
       });
-    }  
-  }) 
-}
-
-  getNombreProducto(id: number): string {                            
-  const producto = this.productos.find(a => a.id === id);
-  return producto ? producto.nombre : 'Desconocido';
-}
-
-  getPrecioUnidad(id: number): number {
-  const producto = this.productos.find(p => p.id === id);
-  return producto ? producto.precio_unidad : 0;
+    }
+  });
 }
 
   deleteProductoCarrito(id: number){
@@ -100,7 +101,6 @@ export class CarritoProductosListComponent implements OnInit {
     Swal.fire({
       position: 'top',
       title: '¿Estás seguro?',
-      text: "¡No podrás revertir esto!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: '¡Sí, bórralo!'
@@ -109,12 +109,6 @@ export class CarritoProductosListComponent implements OnInit {
     this.productosCarritoService.eliminarProductoCarrito(id).subscribe(
       () => this.listCarritoProductos()
     );
-    // @ts-ignore
-    Swal.fire({
-      position: 'top',
-      title: '¡Eliminado!',
-      icon: 'success',
-    });
     }
   });
 };

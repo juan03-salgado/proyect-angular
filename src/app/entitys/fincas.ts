@@ -3,6 +3,6 @@ export class Fincas {
         public nombre: string, 
         public email: string, 
         public telefono: string, 
-        public ubicacion: string) {
-    }
+        public ubicacion: string
+    ) { }
 }

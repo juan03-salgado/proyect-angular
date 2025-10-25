@@ -7,16 +7,18 @@ import { RouterLink } from '@angular/router';
 import { CarritoProductosService } from '../../service/carrito-productos.service';
 import { carritoProductos } from '../../entitys/carritoProductos';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-home-cliente',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule],
+  imports: [CommonModule, RouterLink, FormsModule, NgxPaginationModule],
   templateUrl: './home-cliente.component.html',
   styleUrl: './home-cliente.component.css'
 })
 export class HomeClienteComponent implements OnInit{
 
+  paginaActual: number = 1;
   productos: Productos[] = [];
   fincas: Fincas[] = [];
   buscarTipoProducto: string = 'Todos los productos';

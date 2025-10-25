@@ -1,12 +1,12 @@
 <div *ngIf="!obtenerLogin()">
   
   <div *ngIf="esAdmin()" class="d-flex">
-    <div class="sidebar d-flex flex-column align-items-center">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 sidebar d-flex flex-column align-items-center">
       <img src="usuario.jpg" alt="Avatar" class="avatar mb-2">
       <h5 class="mb-0">User_admin</h5>
       <small class="mb-3">Administrador</small>
 
-      <ul class="nav flex-column w-100 px-3">
+      <ul class="nav flex-column mb-auto w-100 px-3">
         <li class="nav-item mb-4">
           <a class="nav-link d-flex align-items-center" [routerLink]="['home/home-admin']">
             <i class="bi bi-house me-2"></i> Inicio
@@ -52,36 +52,28 @@
   </div>
 
   <div *ngIf="esUsuario()">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary px-3">
+    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary shadow-sm px-3">
       <div class="container-fluid">
-        <a class="navbar-brand pt-2 p-3 px-5 text-success text-uppercase lh-lg">AgroMarket</a>
+        <a class="navbar-brand text-success text-uppercase fw-bold">AgroMarket</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-center">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+          <ul class="navbar-nav mb-2 mb-lg-0 text-center mx-auto ">
             <li class="nav-item p-3 mx-2">
               <a class="nav-link px-2" [routerLink]="['/home/home-cliente']">Home</a>
             </li>
             <li class="nav-item p-3 mx-2">
               <a class="nav-link px-2" href="">Link</a>
             </li>
-            <li class="nav-item dropdown mx-4">
-              <a class="nav-link dropdown-toggle p-4 px-2" href="#" data-bs-toggle="dropdown">
-                Pagos
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
+            <li class="nav-item p-3 mx-2">
+              <a class="nav-link px-2" [routerLink]="['/factura']">Pagos</a>
             </li>
-          </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar productos" aria-label="Search"/>
-            <button class="btn btn-outline-success me-4" type="submit"><i class="bi bi-search"></i></button>
+          </ul> 
+          <form class="d-flex align-items-center me-3" role="search">
+            <input class="form-control me-3" type="search" placeholder="Buscar productos" aria-label="Search"/>
+            <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
           </form>
           <button class="btn bg-danger justify-content-end" (click)="logoutUsuario()"><i class="bi bi-box-arrow-right"></i></button>
         </div>
