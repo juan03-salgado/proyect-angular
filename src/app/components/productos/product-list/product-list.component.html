@@ -1,4 +1,4 @@
-<div class="dashboard-content">
+<div class="dashboard-content d-flex flex-column min-vh-100">
   <div class="row mb-3">
     <div class="col-12">
       <img src="productos.jpg" alt="Banner" class="img-fluid top-banner">
@@ -7,9 +7,11 @@
 
   <h2 class="fs-3 fw-bold text-success text-uppercase lh-lg">Listado de productos agricolas</h2>
   
-  <div class="d-flex justify-content-between mb-3">
+<div class="row mb-3 align-items-center g-3">
+  <div class="col-12 col-md-6 text-md-start">
     <a class="btn btn-success bi-plus" [routerLink]="['/product/add']">Agregar producto</a>
-    <div class="col-md-4">
+  </div>
+  <div class="col-12 col-md-4 ms-auto">
     <div class="input-group">
       <select class="form-select" [(ngModel)]="buscarTipoProducto">
         <option value="">Todas las categorías</option>
@@ -18,15 +20,17 @@
         <option value="Carnes">Carnes</option>
         <option value="Lacteos">Lacteos</option>
       </select>
-    <button class="btn btn-success" type="button" (click)="filtrarProductos()">Buscar</button>
+      <button class="btn btn-success" type="button" (click)="filtrarProductos()">Buscar</button>
+    </div>
   </div>
-</div>
-  </div>  
+</div>  
 
+<div class="table-responsive">
   <table class="table table-bordered table-hover border-success table-striped mt-3">
     <thead>
       <tr>
         <th scope="col" class="bi bi-hash me-2"> Id</th>
+        <th scope="col" class="bi-box-seam"> Imagen</th> 
         <th scope="col" class="bi-box-seam"> Tipo de producto</th>
         <th scope="col" class="bi bi-basket"> Nombre</th>
         <th scope="col" class="bi-file-earmark-text"> Descripción</th>
@@ -37,8 +41,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let producto of productoFiltrado">
+      <tr *ngFor="let producto of productoFiltrado | paginate: {itemsPerPage: 6, currentPage: paginaActual}">
         <th scope="row">{{ producto.id }}</th>
+        <td class="text-center"><img *ngIf="producto.imagen" [src]="producto.imagen" alt="{{ producto.nombre }}" style="width:40px; height:40px; object-fit:cover;"></td>        
         <td>{{ producto.tipo_producto }}</td>
         <td>{{ producto.nombre }}</td>
         <td>{{ producto.descripcion }}</td>
@@ -54,4 +59,10 @@
       </tr>
     </tbody>
   </table>
+  </div>
+   <div class="container mt-auto bg-white">
+    <pagination-controls (pageChange)="paginaActual = $event" [responsive]="true" previousLabel="Anterior"
+      nextLabel="Siguiente" class="pagination justify-content-center"> 
+    </pagination-controls>
+</div>
 </div>

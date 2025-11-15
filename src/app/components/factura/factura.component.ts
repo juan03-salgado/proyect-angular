@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { carritoProductos } from '../../entitys/carritoProductos';
 import { CommonModule } from '@angular/common';
 import { ComprasService } from '../../service/compras.service';
 import { Compras } from '../../entitys/compras';
@@ -27,7 +26,6 @@ export class FacturaComponent implements OnInit {
 
     if (idCompra) {
       this.cargarFactura(idCompra);
-      this.referenciaPago();
     }
   }
 
@@ -38,15 +36,12 @@ cargarFactura(idCompra: number) {
           const compra = res[0];
           this.productosCarrito = compra.productos || [];
           this.nombreCliente = compra.cliente || 'Desconocido';
+          this.referencia = compra.referencia_pago;
           console.log('Factura cargada:', this.productosCarrito);
         }
       },
       error: (err) => console.error(err),
     });
-  }
-
-  referenciaPago(){
-    this.referencia = 'REF-' + Math.floor(100000 + Math.random() * 90000);
   }
   
   precioTotalCarrito(){

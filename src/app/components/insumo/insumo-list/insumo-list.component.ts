@@ -4,16 +4,18 @@ import { InsumosService } from '../../../service/insumos.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-insumo-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, NgxPaginationModule],
   templateUrl: './insumo-list.component.html',
   styleUrl: './insumo-list.component.css'
 })
 export class InsumoListComponent implements OnInit {
 
+  paginaActual: number = 1;
   insumos: Insumos[] = [];
   proveedores: any[] = [];
   buscarNombreInsumo: string = '';

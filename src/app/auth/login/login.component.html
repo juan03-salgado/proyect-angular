@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+    <div class="login-logo text-center mb-3">
+      <img src="https://cdn-icons-png.flaticon.com/128/709/709699.png" alt="usuario">
+    </div>
+
+    <h1 class="text-center fs-3 fw-bold text-uppercase mb-4">LOGIN</h1>
+
+    <form (ngSubmit)="login()" class="d-flex flex-column gap-3 text-white">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" id="username" class="form-control" [(ngModel)]="nombre_user" name="username" required>
+      </div>
+
+      <div class="mb-3 position-relative">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" class="form-control" [(ngModel)]="contrasena" name="password" required>
+        <span class="eye-icon" onclick="const p = this.previousElementSibling; p.type = p.type === 'password' ? 'text' : 'password';">
+          👁️
+        </span>
+      </div>
+        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+
+      <div class="text-center mt-3">
+        <p class="mb-0 text-white">¿No tienes cuenta?
+          <a [routerLink]="['/registro']" class="text-dark fw-bold">Regístrate aquí</a>
+        </p>
+      </div>
+    </form>
+</div>  
+</body>
+</html>

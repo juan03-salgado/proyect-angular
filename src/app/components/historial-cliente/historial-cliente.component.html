@@ -1,0 +1,51 @@
+<div class="container my-5 d-flex flex-column">
+
+  <h2 class="text-success mb-4 fw-bold text-center">Historial de compras</h2>
+
+  <div class="pt-3">
+    <pagination-controls (pageChange)="paginaActual = $event" [responsive]="true" previousLabel="Anterior" nextLabel="Siguiente" class="pagination justify-content-center paginacion-fija"></pagination-controls>
+  </div>
+
+  <div *ngIf="compras.length === 0">
+    <p class="text-muted">No tienes compras registradas.</p>
+  </div>
+
+<div class="mx-auto w-100" style="max-width: 900px;">
+
+<div class="flex-grow-1 mx-auto w-100" style="max-width: 900px;">
+    <div class="card shadow-sm p-4 mb-4" *ngFor="let compra of compras | paginate: { itemsPerPage: 2, currentPage: paginaActual }">
+
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <h5 class="fw-bold mb-0">Compra #{{ compra.id_compra }}</h5>
+      <button class="btn btn-danger btn-sm mb-0" (click)="descargarFactura(compra)">Descargar factura</button>
+  </div>
+
+    <p class="mb-3"><strong>Cliente:</strong> {{ compra.cliente }}</p>
+    <p class="mb-3"><strong>Referencia:</strong> {{compra.referencia_pago}}</p>
+
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+          <thead>
+            <tr>
+              <th style="width: 30%">Producto</th>
+              <th style="width: 20%">Tipo</th>
+              <th style="width: 20%">Cantidad</th>
+              <th style="width: 20%">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of compra.productos">
+              <td>{{ p.producto }}</td>
+              <td>{{ p.tipo_producto }}</td>
+              <td>{{ p.cantidad }}</td>
+              <td>{{ p.precio_total | currency:'COP ':'symbol' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="justify-content-end d-flex">
+        <strong>Total: {{ totalCompra(compra.productos) | currency:'COP ':'symbol' }}</strong>
+      </div>
+    </div>
+</div>
+</div>

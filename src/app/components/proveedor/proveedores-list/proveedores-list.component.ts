@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ProveedoresService } from '../../../service/proveedores.service';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { Proveedores } from '../../../entitys/proveedores';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-proveedores-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, NgxPaginationModule],
   templateUrl: './proveedores-list.component.html',
   styleUrl: './proveedores-list.component.css'
 })
 export class ProveedoresListComponent implements OnInit{
 
+  paginaActual: number = 1;
   proveedores: any[] = [];
   buscarNombreProveedor: string = '';
   proveedorFiltrado: Proveedores[] = [];

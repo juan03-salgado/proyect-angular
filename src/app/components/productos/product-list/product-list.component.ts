@@ -5,22 +5,25 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Fincas } from '../../../entitys/fincas';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, NgxPaginationModule],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent implements OnInit {
 
+  paginaActual: number = 1;
   productos: Productos[] = [];
   fincas: Fincas[] = [];
   buscarTipoProducto: string = '';
   productoFiltrado: Productos[] = [];
 
-  constructor(private productosService: ProductosService) { }
+  constructor(private productosService: ProductosService,
+  ) { }
 
   ngOnInit(): void {
     this.listProductos();
@@ -34,6 +37,7 @@ export class ProductListComponent implements OnInit {
       filtrados = filtrados.filter(i => i.tipo_producto.toLowerCase().includes(this.buscarTipoProducto.trim().toLowerCase()));
     } 
     this.productoFiltrado = filtrados;
+    
   }
   
   listProductos() {
@@ -91,10 +95,4 @@ export class ProductListComponent implements OnInit {
   });
 };
 
-  editProductos(producto: Productos){
-    console.log(producto);
-    this.productosService.actualizarProducto(producto).subscribe(
-      () => this.listProductos()
-    );
-  }
 }

@@ -1,48 +1,53 @@
 <div *ngIf="!obtenerLogin()">
   
   <div *ngIf="esAdmin()" class="d-flex">
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3 sidebar d-flex flex-column align-items-center">
-      <img src="usuario.jpg" alt="Avatar" class="avatar mb-2">
-      <h5 class="mb-0">User_admin</h5>
-      <small class="mb-3">Administrador</small>
+    
+  <button class="btn btn-success d-lg-none mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#adminSidebar" aria-controls="adminSidebar">
+    <i class="bi bi-list"></i> 
+  </button>
 
-      <ul class="nav flex-column mb-auto w-100 px-3">
-        <li class="nav-item mb-4">
-          <a class="nav-link d-flex align-items-center" [routerLink]="['home/home-admin']">
-            <i class="bi bi-house me-2"></i> Inicio
-          </a>
-        </li>
-        <li class="nav-item mb-4">
-          <a class="nav-link d-flex align-items-center" [routerLink]="['/product']">
-            <i class="bi bi-basket me-2"></i> Productos
-          </a>
-        </li>
-        <li class="nav-item mb-4">
-          <a class="nav-link d-flex align-items-center" [routerLink]="['/insumos']">
-            <i class="bi bi-leaf me-2"></i> Insumos
-          </a>
-        </li>
-        <li class="nav-item mb-4">
-          <a class="nav-link d-flex align-items-center" [routerLink]="['/fincas']">
-            <i class="bi bi-apple me-2"></i> Fincas
-          </a>
-        </li>
-        <li class="nav-item mb-4">
-          <a class="nav-link d-flex align-items-center" [routerLink]="['/proveedores']">
-            <i class="bi bi-truck me-2"></i> Proveedores
-          </a>
-        </li>
-        <li class="nav-item mb-4">
-          <a class="nav-link d-flex align-items-center" [routerLink]="['/clientes']">
-            <i class="bi bi-people me-2"></i> Clientes
-          </a>
-        </li>
-        <li class="nav-item mb-4">
-          <a class="nav-link d-flex align-items-center" [routerLink]="['/compras']">
-            <i class="bi bi-cart me-2"></i> Ventas
-          </a>
-        </li>
-      </ul>
+  <div class="col-12 col-sm-6 col-md-4 col-lg-3 sidebar d-flex flex-column align-items-center collapse" id="adminSidebar">
+    <img src="usuario.jpg" alt="Avatar" class="avatar mb-2">
+    <h5 class="mb-0">User_admin</h5>
+    <small class="mb-3">Administrador</small>
+
+    <ul class="nav flex-column mb-auto w-100 px-3">
+      <li class="nav-item mb-4">
+        <a class="nav-link d-flex align-items-center" [routerLink]="['home/home-admin']">
+          <i class="bi bi-house me-2"></i> Inicio
+        </a>
+      </li>
+      <li class="nav-item mb-4">
+        <a class="nav-link d-flex align-items-center" [routerLink]="['/product']">
+          <i class="bi bi-basket me-2"></i> Productos
+        </a>
+      </li>
+      <li class="nav-item mb-4">
+        <a class="nav-link d-flex align-items-center" [routerLink]="['/insumos']">
+          <i class="bi bi-leaf me-2"></i> Insumos
+        </a>
+      </li>
+      <li class="nav-item mb-4">
+        <a class="nav-link d-flex align-items-center" [routerLink]="['/fincas']">
+          <i class="bi bi-apple me-2"></i> Fincas
+        </a>
+      </li>
+      <li class="nav-item mb-4">
+        <a class="nav-link d-flex align-items-center" [routerLink]="['/proveedores']">
+          <i class="bi bi-truck me-2"></i> Proveedores
+        </a>
+      </li>
+      <li class="nav-item mb-4">
+        <a class="nav-link d-flex align-items-center" [routerLink]="['/clientes']">
+          <i class="bi bi-people me-2"></i> Clientes
+        </a>
+      </li>
+      <li class="nav-item mb-4">
+        <a class="nav-link d-flex align-items-center" [routerLink]="['/compras']">
+          <i class="bi bi-cart me-2"></i> Ventas
+        </a>
+      </li>
+    </ul>
 
       <button class="btn bg-danger mt-auto mb-3" (click)="logoutAdmin()">
         Cerrar Sesión
@@ -52,33 +57,47 @@
   </div>
 
   <div *ngIf="esUsuario()">
-    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary shadow-sm px-3">
-      <div class="container-fluid">
-        <a class="navbar-brand text-success text-uppercase fw-bold">AgroMarket</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary shadow-sm py-2">
+      <div class="container-fluid px-5">
+        <a class="navbar-brand text-success text-uppercase fw-bold fs-3" [routerLink]="['/home/home-cliente']"><i class="bi bi-shop me-2"></i>AgroMarket</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-          <ul class="navbar-nav mb-2 mb-lg-0 text-center mx-auto ">
-            <li class="nav-item p-3 mx-2">
-              <a class="nav-link px-2" [routerLink]="['/home/home-cliente']">Home</a>
-            </li>
-            <li class="nav-item p-3 mx-2">
-              <a class="nav-link px-2" href="">Link</a>
-            </li>
-            <li class="nav-item p-3 mx-2">
-              <a class="nav-link px-2" [routerLink]="['/factura']">Pagos</a>
-            </li>
-          </ul> 
-          <form class="d-flex align-items-center me-3" role="search">
-            <input class="form-control me-3" type="search" placeholder="Buscar productos" aria-label="Search"/>
-            <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
-          </form>
-          <button class="btn bg-danger justify-content-end" (click)="logoutUsuario()"><i class="bi bi-box-arrow-right"></i></button>
-        </div>
-      </div>
-    </nav>
+  <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+    <ul class="navbar-nav mb-2 mb-lg-0 text-center d-flex align-items-center gap-5 menu-centrado">
+      <li class="nav-item">
+        <a class="nav-link fw-semibold" [routerLink]="['/home/home-cliente']">Productos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fw-semibold" [routerLink]="['/carritoProductos']">Carrito</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fw-semibold" [routerLink]="['/historial']">Pagos</a>
+      </li>
+    </ul> 
   </div>
+
+  <div class="dropdown ms-5 ps-4">
+    <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" id="dropdownUser" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="https://cdn-icons-png.flaticon.com/128/709/709699.png" alt="avatar" class="rounded-circle" width="40" height="40" style="object-fit: cover;">
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="dropdownUser">
+      <li>
+        <a class="dropdown-item" [routerLink]="['/perfil']">
+          <i class="bi bi-person me-2"></i> Perfil
+        </a>
+      </li>
+      <li><hr class="dropdown-divider"></li>
+        <li>
+      <button class="dropdown-item text-danger" (click)="logoutUsuario()">
+        <i class="bi bi-box-arrow-right me-2"></i> Cerrar sesión
+      </button>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </nav>
+</div>
 </div>
 <router-outlet></router-outlet>

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientesService } from '../../../service/clientes.service';
-import { Clientes } from '../../../entitys/clientes';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { UsuariosService } from '../../../service/usuarios.service';
+import { Usuarios } from '../../../entitys/usuarios';
 
 @Component({
   selector: 'app-clientes-add',
@@ -19,7 +19,7 @@ export class ClientesAddComponent implements OnInit{
   telefono: string = '';
   id_user: number = 0;
 
-  constructor(private clientesService: ClientesService,
+  constructor(private usuariosService: UsuariosService,
     private router: Router
   ) {}
 
@@ -37,10 +37,10 @@ export class ClientesAddComponent implements OnInit{
     });
       return;
     }
-    let cliente = new Clientes(this.id, this.nombre, this.direccion, this.telefono, this.id_user);
+    let cliente = new Usuarios(this.id, this.nombre, this.direccion, this.telefono, this.id_user);
     console.log(cliente);
 
-    this.clientesService.crearCliente(cliente).subscribe(     
+    this.usuariosService.crearUsuario(cliente).subscribe(     
         data => console.log(data)                                            
     );
       // @ts-ignore

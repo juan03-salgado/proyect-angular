@@ -1,0 +1,28 @@
+.card {
+  background: #fff;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.btn-primary, .btn-outline-primary {
+  min-width: 100px;
+}
+
+.form-label {
+  font-weight: 500;
+}
+
+.eye-icon {
+  position: absolute;
+  top: 79%;
+  right: 30px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}

@@ -22,7 +22,7 @@ export class AppComponent {
   }
 
   esUsuario(): boolean {
-    return localStorage.getItem('rol') === 'user';
+    return localStorage.getItem('rol') === 'cliente';
   }
 
   logoutAdmin(): void {

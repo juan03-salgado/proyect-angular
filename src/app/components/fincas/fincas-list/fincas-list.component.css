@@ -1,6 +1,7 @@
 .dashboard-content {
   margin-left: 240px;
   padding: 20px;
+  transition: all 0.3s;
 }
 
 .top-banner {
@@ -21,4 +22,10 @@ body {
 
 .buscador-id {
   min-width: 300px;
+}
+
+@media (max-width: 992px) {
+  .dashboard-content {
+    margin-left: 0; 
+  }
 }

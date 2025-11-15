@@ -32,8 +32,8 @@ export class UsuariosService {
     return this.http.delete(`${this.api}/${id}`);
   }
 
-  loginUsuario(nombre_user: string, contrasena: string): Observable<Usuarios[]>{
-    return this.http.get<Usuarios[]>(`${this.api}/login`);
+  loginUsuario(nombre_user: string, contrasena: string): Observable<any>{
+    return this.http.post<any>(`${this.api}/login`, { nombre_user, contrasena});
   }
 
 }

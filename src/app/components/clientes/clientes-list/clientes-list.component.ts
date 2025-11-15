@@ -5,15 +5,17 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Usuarios } from '../../../entitys/usuarios';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-clientes-list',
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, NgxPaginationModule],
   templateUrl: './clientes-list.component.html',
   styleUrl: './clientes-list.component.css'
 })
 export class ClientesListComponent implements OnInit {
 
+  paginaActual: number = 1;
   clientes: Clientes[] = [];
   clientesFiltrados: Clientes[] = [];
   buscarNombreCliente: string = '';

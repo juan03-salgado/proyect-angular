@@ -21,6 +21,7 @@ export class HomeClienteComponent implements OnInit{
   paginaActual: number = 1;
   productos: Productos[] = [];
   fincas: Fincas[] = [];
+  buscarNombreProducto: string = '';
   buscarTipoProducto: string = 'Todos los productos';
   productoFiltrado: Productos[] = [];
   
@@ -34,6 +35,9 @@ export class HomeClienteComponent implements OnInit{
   }
 
   agregarAlCarrito(producto: Productos) {
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    const id_carrito = usuario?.id_carrito;
+    
     const cantidad = 1; 
 
     if(producto.unidades <= 0){
@@ -46,8 +50,6 @@ export class HomeClienteComponent implements OnInit{
       return
     }
     
-    const id_carrito = 1;
-
     const precio_total = producto.precio_unidad * cantidad;
     const nuevoItem = new carritoProductos(0, producto.id, cantidad, precio_total, id_carrito);
 
@@ -91,6 +93,10 @@ export class HomeClienteComponent implements OnInit{
     if (this.buscarTipoProducto.trim() !== 'Todos los productos') {
       filtrados = filtrados.filter(i => i.tipo_producto.toLowerCase().includes(this.buscarTipoProducto.trim().toLowerCase()));
     } 
+
+    if(this.buscarNombreProducto.trim() !== ''){
+      filtrados = filtrados.filter(i => i.nombre.toLowerCase().includes(this.buscarNombreProducto.trim().toLowerCase()));
+    }
     this.productoFiltrado = filtrados;
   }
 
@@ -108,6 +114,5 @@ export class HomeClienteComponent implements OnInit{
   getNombreFinca(id: number): string {                            
   const finca = this.fincas.find(a => a.id === id);
   return finca ? finca.nombre : 'Desconocido';
-}
-
+  }
 }

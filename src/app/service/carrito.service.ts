@@ -15,4 +15,8 @@ export class CarritoService {
   getCarrito(): Observable<Carrito[]>{
     return this.http.get<Carrito[]>(this.api);
   }
+
+  getCarritoId(id: number): Observable<Carrito[]>{
+    return this.http.get<Carrito[]>(`${this.api}/${id}`);
+  }
 }

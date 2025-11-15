@@ -34,6 +34,14 @@
     </div>
 
     <div class="mb-3">
+      <label class="form-label fw-semibold">Imagen actual del producto</label>
+      <div *ngIf="imagenActual" class="mb-2 text-center">
+        <img [src]="imagenActual" alt="Imagen actual" style="width:100px; height:100px; object-fit:cover; border:1px solid #ccc; border-radius:10px;">
+      </div>
+      <input type="file" class="form-control" (change)="seleccionarImagen($event)">
+    </div>
+
+    <div class="mb-3">
     <label for="fincaId" class="form-label fw-semibold">Seleccionar Finca</label>
     <select id="fincaId" class="form-control" style="border: 2px solid #28a792;" [(ngModel)]="finca_id" name="finca_id" required>
     <option *ngFor="let finca of fincas" [value]="finca?.id">
