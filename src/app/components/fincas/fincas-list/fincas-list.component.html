@@ -1,4 +1,4 @@
-<div class="dashboard-content">
+<div class="dashboard-content d-flex flex-column min-vh-100">
   <div class="row mb-3">
     <div class="col-12">
       <img src="agricultor.jpg" alt="Banner" class="img-fluid top-banner">
@@ -7,9 +7,11 @@
 
   <h2 class="fs-3 fw-bold text-success text-uppercase lh-lg">Listado de fincas</h2>
 
-  <div class="d-flex justify-content-between mb-3">
-  <a class="btn btn-success bi-plus" [routerLink]="['/fincas/add']">Agregar fincas</a>
-  <div class="col-md-4">
+<div class="row mb-3 align-items-center g-3">
+  <div class="col-12 col-md-6 text-md-start">
+    <a class="btn btn-success bi-plus" [routerLink]="['/fincas/add']">Agregar fincas</a>
+  </div>
+  <div class="col-12 col-md-4 ms-auto">
     <div class="input-group">
       <input type="text" class="form-control" placeholder="Buscar finca por nombre" [(ngModel)]="buscarNombreFinca">
       <button class="btn btn-success" type="button" (click)="filtrarFinca()">Buscar</button>
@@ -17,6 +19,7 @@
   </div>
 </div>
   
+<div class="table-responsive">
 <table class="table table-bordered table-hover border-success table-striped mt-3">
     <thead>
       <tr>
@@ -29,7 +32,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let finca of fincasFiltradas">       
+      <tr *ngFor="let finca of fincasFiltradas | paginate: {itemsPerPage: 6, currentPage: paginaActual}">       
         <th scope="row">{{ finca.id }}</th>           
         <td>{{ finca.nombre }}</td>
         <td>{{ finca.email }}</td>
@@ -44,4 +47,10 @@
       </tr>
     </tbody>
   </table>
+</div>
+  <div class="container mt-auto bg-white">
+    <pagination-controls (pageChange)="paginaActual = $event" [responsive]="true" previousLabel="Anterior"
+      nextLabel="Siguiente" class="pagination justify-content-center"> 
+    </pagination-controls>
+</div>
 </div>

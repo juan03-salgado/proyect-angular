@@ -1,2 +1,10 @@
+body {
+  background: #f8fafc; 
+  margin: 0;
+  padding: 0;
+}
 
+html, body, app-root {
+  height: 100%;
+}
 

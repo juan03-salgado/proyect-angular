@@ -5,17 +5,19 @@ import { FincasService } from '../../../service/fincas.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-fincas-list',
   standalone: true,                          
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, NgxPaginationModule],
   templateUrl: './fincas-list.component.html',
   styleUrl: './fincas-list.component.css'
 })
 
 export class FincasListComponent implements OnInit {         
 
+  paginaActual: number = 1;
   fincas: Fincas[] = []; 
   fincasFiltradas: Fincas[] = [];
   buscarNombreFinca: string = '';
@@ -71,6 +73,7 @@ export class FincasListComponent implements OnInit {
     }
   });
 }
+
   editFinca(fincas: Fincas) {
     console.log(fincas);                                                
     this.fincasService.actualizarFinca(fincas).subscribe(    

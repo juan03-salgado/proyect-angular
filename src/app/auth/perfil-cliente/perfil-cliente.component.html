@@ -1,0 +1,74 @@
+<div class="card mx-auto mt-5 shadow p-4" style="max-width: 500px; border-radius: 10px;">
+<img src="https://cdn-icons-png.flaticon.com/128/709/709699.png" alt="Avatar" class="rounded-circle mb-3 d-block mx-auto" style="width: 100px; height: 100px; object-fit: cover;">
+  <h4 class="text-center mb-4 fw-bold">Perfil</h4>
+
+  <div *ngIf="!seccion" class="text-center mt-3">
+  <h5 class="fw-bold">{{ cliente.nombre }}</h5>
+
+  <p class="text-muted mb-1">
+    <i class="bi bi-envelope"></i> {{ usuario.email }}
+  </p>
+  <p class="text-muted mb-1" *ngIf="cliente?.telefono">
+    <i class="bi bi-telephone"></i> {{ cliente.telefono }}
+  </p>
+  <p class="text-muted" *ngIf="cliente?.direccion">
+    <i class="bi bi-geo-alt"></i> {{ cliente.direccion }}
+  </p>
+
+  <button class="btn btn-primary mt-3 w-100" (click)="seccion='perfil'">
+    Editar Perfil
+  </button>
+
+  <button class="btn btn-outline-primary mt-2 w-100" (click)="seccion='cuenta'">
+    Configuración de Cuenta
+  </button>
+</div>
+
+  <div *ngIf="seccion==='perfil' && cliente">
+  <button *ngIf="seccion" class="btn btn-link position-absolute" style="top: 10px; left: 10px; text-decoration: none; font-size: 18px;" (click)="seccion =''">← Volver</button>
+    <form (ngSubmit)="actualizarCliente()" class="d-flex flex-column gap-3">
+      <div>
+        <label class="form-label">Nombre</label>
+        <input [(ngModel)]="cliente.nombre" name="nombre" class="form-control" required>
+      </div>
+      <div>
+        <label class="form-label">Dirección</label>
+        <input [(ngModel)]="cliente.direccion" name="direccion" placeholder="Ubicación de residencia" class="form-control">
+      </div>
+      <div>
+        <label class="form-label">Teléfono</label>
+        <input [(ngModel)]="cliente.telefono" name="telefono" placeholder="Telefono de contacto" class="form-control">
+      </div>
+
+      <div class="d-flex justify-content-between mt-3">
+        <button class="btn btn-success" type="submit">Guardar cambios</button>
+        <button class="btn btn-danger" type="button" (click)="eliminarCuenta()">Eliminar cuenta</button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="seccion==='cuenta' && usuario" class="d-flex flex-column gap-3">
+    <form (ngSubmit)="actualizarUsuario()" class="d-flex flex-column gap-3">
+      <div>
+        <label class="form-label">Usuario</label>
+        <input [(ngModel)]="usuario.nombre_user" name="nombre_user" class="form-control">
+      </div>
+      <div>
+        <label class="form-label">Email</label>
+        <input [(ngModel)]="usuario.email" name="email" class="form-control">
+      </div>
+      <div>
+        <label class="form-label">Contraseña</label>
+        <input [(ngModel)]="usuario.contrasena" name="contrasena" type="password" class="form-control">
+        <span class="eye-icon" onclick="const p = this.previousElementSibling; p.type = p.type === 'password' ? 'text' : 'password';">
+          👁️
+        </span>
+      </div>
+
+      <div class="d-flex justify-content-between mt-3">
+      <button class="btn btn-success" type="submit">Guardar cambios</button>
+      <button class="btn btn-secondary" type="button" (click)="seccion = ''">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

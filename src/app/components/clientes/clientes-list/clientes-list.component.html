@@ -1,4 +1,4 @@
-<div class="dashboard-content">
+<div class="dashboard-content d-flex flex-column min-vh-100">
   <div class="row mb-3">
     <div class="col-12">
       <img src="clientes.jpg" alt="Banner" class="img-fluid top-banner">
@@ -7,8 +7,8 @@
 
   <h2 class="fs-3 fw-bold text-success text-uppercase lh-lg">Listado de clientes</h2>
   
-  <div class="d-flex justify-content-between mb-3">
-    <div class="col-md-4">
+<div class="row mb-3 align-items-center g-3">
+  <div class="col-12 col-md-6">
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Buscar nombre de cliente" [(ngModel)]="buscarNombreCliente">
         <button class="btn btn-success" type="button" (click)="filtrarCliente()">Buscar</button>
@@ -16,6 +16,7 @@
     </div>
   </div>  
 
+<div class="table-responsive">
   <table class="table table-bordered table-hover border-success table-striped mt-3">
     <thead>
       <tr>
@@ -27,7 +28,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let cliente of clientesFiltrados">
+      <tr *ngFor="let cliente of clientesFiltrados | paginate: {itemsPerPage: 6, currentPage: paginaActual}">
         <th scope="row">{{ cliente.id }}</th>
         <td>{{ cliente.nombre }}</td>
         <td>{{ cliente.direccion }}</td>
@@ -40,4 +41,10 @@
       </tr>
     </tbody>
   </table>
+</div>
+  <div class="container mt-auto bg-white">
+    <pagination-controls (pageChange)="paginaActual = $event" [responsive]="true" previousLabel="Anterior"
+      nextLabel="Siguiente" class="pagination justify-content-center"> 
+    </pagination-controls>
+</div>
 </div>

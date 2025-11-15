@@ -3,15 +3,18 @@ import { ComprasService } from '../../service/compras.service';
 import { Compras } from '../../entitys/compras';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-compras-list',
-  imports: [CommonModule, FormsModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule, NgxPaginationModule],
   templateUrl: './compras-list.component.html',
   styleUrl: './compras-list.component.css'
 })
 export class ComprasListComponent implements OnInit {
 
+  paginaActual: number = 1;
   compras: Compras[] = [];
   compraFiltrada: Compras[] = [];
   buscarCompra: string = '';
@@ -36,7 +39,7 @@ export class ComprasListComponent implements OnInit {
     let filtrados = this.compras;
     
     if(this.buscarCompra.toString().trim() !== '') {
-      filtrados = filtrados.filter(a => a.id_carrito.toString().includes(this.buscarCompra.toString().trim())
+      filtrados = filtrados.filter(a => a.productos?.some(p => p.tipo_producto.toLowerCase().includes(this.buscarCompra.trim().toLowerCase()))
       ); 
     }
       this.compraFiltrada = filtrados;

@@ -2,12 +2,17 @@
   margin-left: 230px;
   padding: 20px;
   border-radius: 15px;
+  transition: all 0.3s;
  }
 
 .stats-card {
   color: white;
   border-radius: 15px;
   padding: 20px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .top-banner {
@@ -15,6 +20,10 @@
   height: 300px;
   object-fit: cover;
   border-radius: 10px;
+}
+
+.banner-container {
+  position: relative;   
 }
 
 .logo-img {
@@ -28,5 +37,32 @@
   border: 3px solid rgb(97, 201, 66);
   background-color: white;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: all 0.3s ease; 
+}
+
+@media (max-width: 992px){
+  .dashboard-content{
+    margin-left: 0;
+  }
+
+  .logo-img {
+    width: 150px;
+    height: 150px;
+    top: 20px;
+    left: 20px;
+  }
+
+  .stats-card {
+    min-height: 100px;
+  }
+}
+
+@media (max-width: 576px){
+  .logo-img {
+    width: 120px;
+    height: 120px;
+    top: 15px;
+    left: 15px;
+  }
 }
 

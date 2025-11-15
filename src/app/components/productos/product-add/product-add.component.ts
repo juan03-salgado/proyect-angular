@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductosService } from '../../../service/productos.service';
 import { Router, RouterModule } from '@angular/router';
-import { Productos } from '../../../entitys/productos';
 import { FormsModule } from '@angular/forms';
 import { Fincas } from '../../../entitys/fincas';
 import { CommonModule } from '@angular/common';
@@ -23,6 +22,7 @@ export class ProductAddComponent implements OnInit{
   unidades: number = 0;
   precio_unidad: number = 0;
   finca_id: number = 0;
+  imagen: File | null = null;
 
   fincas: Fincas[] = [];
   categorias: string[] = ['Vegetales', 'Frutas', 'Carnes', 'Lacteos']
@@ -41,11 +41,15 @@ export class ProductAddComponent implements OnInit{
       this.fincas = data;
       console.log('Fincas cargadas:', data);
     },
-    );
-}
+  );
+};
+
+  seleccionarArchivo(event: any) {
+    this.imagen = event.target.files[0] || null;
+  }
 
   addProducto(){
-    if(!this.tipo_producto || !this.nombre || !this.descripcion || this.unidades <= 0 || this.precio_unidad <= 0 || this.finca_id <= 0) {
+    if(!this.tipo_producto || !this.nombre || !this.descripcion || this.unidades <= 0 || this.precio_unidad <= 0 || this.finca_id <= 0 || !this.imagen) {
       //@ts-ignore
       Swal.fire({
         position: 'top',
@@ -54,11 +58,21 @@ export class ProductAddComponent implements OnInit{
         text: 'Por favor, complete todos los campos requeridos'
     });
       return;
-    }  
-    let productos = new Productos(this.id, this.tipo_producto, this.nombre, this.descripcion, this.unidades, this.precio_unidad, this.finca_id);
-    console.log(productos);
+    };
 
-    this.productosService.crearProducto(productos).subscribe(
+    const producto = new FormData();
+    producto.append('tipo_producto', this.tipo_producto);
+    producto.append('nombre', this.nombre);
+    producto.append('descripcion', this.descripcion);
+    producto.append('unidades', this.unidades.toString());
+    producto.append('precio_unidad', this.precio_unidad.toString());
+    producto.append('finca_id', this.finca_id.toString());
+
+    if(this.imagen){
+      producto.append('imagen', this.imagen);
+    }
+
+    this.productosService.crearProducto(producto).subscribe(
       data => console.log(data)
     );
       // @ts-ignore

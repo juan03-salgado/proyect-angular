@@ -30,9 +30,14 @@ export class CarritoProductosListComponent implements OnInit {
   }
 
   listCarritoProductos(){
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    const id_carrito = usuario.id_carrito;
+
+    if(!id_carrito) return;
+  
     this.productosCarritoService.getCarritoProductos().subscribe(
       (data: carritoProductos[]) => {
-        this.productosCarrito = data;
+        this.productosCarrito = data.filter(p => p.id_carrito === id_carrito);
         console.log('Productos cargados en el carrito:', this.productosCarrito)
       },
     ),
@@ -46,27 +51,31 @@ export class CarritoProductosListComponent implements OnInit {
   }
 
   realizarCompra() {
-  if (!this.productosCarrito || this.productosCarrito.length === 0) {
-    // @ts-ignore
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    const id_carrito = usuario.id_carrito;
+
+    if(!this.productosCarrito || this.productosCarrito.length === 0) {
+      //@ts-ignore
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'No hay productos en el carrito',
+      });
+      return;
+    };
+
+    //@ts-ignore
     Swal.fire({
       position: 'top',
-      icon: 'error',
-      title: 'No hay productos en el carrito',
-    });
-    return;
-  }
-  //@ts-ignore
-   Swal.fire({
-    position: 'top',
-    title: '¿Deseas confirmar tu compra?',
-    text: 'Se realizará la compra de los productos seleccionados',
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonText: 'Sí, comprar',
-    cancelButtonText: 'Cancelar',
-  }).then((result: any) => {
-    if (result.isConfirmed) {
-      let compra = new Compras(0, 1, this.productosCarrito as any);
+      title: '¿Deseas confirmar tu compra?',
+      text: 'Se realizará la compra de los productos seleccionados',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, comprar',
+      cancelButtonText: 'Cancelar',
+    }).then((result: any) => {
+      if(result.isConfirmed) {
+      let compra = new Compras(0, id_carrito, this.productosCarrito as any);
 
       this.comprarService.RealizarCompra(compra).subscribe({
       next: (res) => {

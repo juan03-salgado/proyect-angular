@@ -1,4 +1,4 @@
-<div class="dashboard-content">
+<div class="dashboard-content d-flex flex-column min-vh-100">
   <div class="row mb-3">
     <div class="col-12">
       <img src="ventas.jpg" alt="Banner" class="img-fluid top-banner">
@@ -7,29 +7,34 @@
 
   <h2 class="fs-3 fw-bold text-success text-uppercase lh-lg">Compras realizadas</h2>
   
-  <div class="d-flex justify-content-between mb-3">
-    <div class="col-md-4">
+<div class="row mb-3 align-items-center g-3">
+  <div class="col-12 col-md-4">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Buscar id de la compra" [(ngModel)]="buscarCompra">
+        <select class="form-select" [(ngModel)]="buscarCompra">
+        <option value="">Todos</option>
+        <option value="Vegetales">Vegetales</option>
+        <option value="Frutas">Frutas</option>
+        <option value="Carnes">Carnes</option>
+        <option value="Lacteos">Lácteos</option> 
+      </select>
         <button class="btn btn-success" type="button" (click)="filtrarCompra()">Buscar</button>
       </div>
-    </div>
-  </div>  
+  </div>
+</div>
 
+<div class="table-responsive">
   <table class="table table-bordered table-hover border-success table-striped mt-3">
     <thead>
       <tr>
         <th scope="col" class="bi bi-hash me-2"> Id</th>
-        <th scope="col" class="bi bi-person-vcard"> Id_carrito</th>
         <th scope="col" class="bi bi-person"> Cliente</th>
         <th scope="col" class="bi bi-cart"> Productos comprados</th>
         <th scope="col" class="bi-gear"> Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let compra of compraFiltrada">
+      <tr *ngFor="let compra of compraFiltrada | paginate: {itemsPerPage: 6, currentPage: paginaActual}">
         <th scope="row">{{ compra.id_compra }}</th>
-        <td>{{ compra.id_carrito }}</td>
         <td>{{ compra.cliente }}</td>
         <td>
           <div class="d-flex flex-wrap gap-2">
@@ -46,4 +51,10 @@
       </tr>
     </tbody>
   </table>
+</div>
+  <div class="container mt-auto bg-white">
+    <pagination-controls (pageChange)="paginaActual = $event" [responsive]="true" previousLabel="Anterior"
+      nextLabel="Siguiente" class="pagination justify-content-center"> 
+    </pagination-controls>
+</div>
 </div>

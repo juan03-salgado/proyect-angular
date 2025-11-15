@@ -6,57 +6,54 @@
   <title>Panel Admin - Agro Tech</title>
 </head>
 <body>
-  <!-- Aqui es donde incluyo la imagen y logo del home -->
-  <div class="dashboard-content">
+  <div class="dashboard-content d-flex flex-column min-vh-100">
     <div class="container-fluid">
-      <div class="row mb-4">
+      <div class="row mb-4 position-relative banner-container">
         <div class="col-12 position-relative">
-          <img src="home.jpg" class="top-banner" alt="Banner">
+          <img src="home.jpg" class="img-fluid top-banner" alt="Banner">
           <img src="agrotech.jpg" class="logo-img" alt="logo agrotech">
         </div>
       </div>
 
       <div class="row g-4">
-        <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
           <div class="bg-primary stats-card">
             <h5 class="bi bi-box"> Productos registrados</h5>
             <p class="fs-4"> {{totalProductos}}</p>
           </div>
         </div>
         
-        <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
           <div class="bg-success stats-card">
             <h5 class="bi bi-houses"> Fincas registradas</h5>
             <p class="fs-4"> {{totalFincas}}</p>
           </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
           <div class="bg-danger stats-card">
             <h5 class="bi bi-leaf"> Insumos registrados</h5>
             <p class="fs-4"> {{totalInsumos}}</p>
           </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
           <div class="bg-warning stats-card">
             <h5 class="bi bi-truck"> Proveedores registrados</h5>
             <p class="fs-4"> {{totalProveedores}}</p>
           </div>          
         </div>
-        <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
           <div class="bg-info stats-card">
             <h5 class="bi bi-people"> Clientes registrados</h5>
             <p class="fs-4">{{totalClientes}}</p>
           </div>          
         </div>
-        <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
           <div class="bg-dark stats-card">
             <h5 class="bi bi-cart-check"> Compras realizadas</h5>
             <p class="fs-4">{{totalCompras}}</p>
           </div>
         </div>
       </div>
-      <div class="d-flex">
-</div>
     </div>
   </div>
 </body>

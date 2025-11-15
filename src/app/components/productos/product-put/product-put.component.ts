@@ -20,6 +20,8 @@ export class ProductPutComponent implements OnInit {
   unidades: number = 0;
   precio_unidad: number = 0;
   finca_id: number = 0;
+  nuevaImagen: File | null = null;
+  imagenActual: string | File | null = null;
 
   fincas: any[] = [];
   categorias: string[] = ['Vegetales', 'Frutas', 'Carnes', 'Lacteos']
@@ -55,7 +57,7 @@ export class ProductPutComponent implements OnInit {
   loadProducto(id: number) {
     this.productosService.getProductos().subscribe(
       data => {
-        const producto = data.find(a => a.id === id);
+        const producto = data.find(prod => prod.id === id);
         if (producto) {
           this.id = producto.id;
           this.tipo_producto = producto.tipo_producto;
@@ -64,6 +66,7 @@ export class ProductPutComponent implements OnInit {
           this.unidades = producto.unidades;
           this.precio_unidad = producto.precio_unidad;
           this.finca_id = producto.finca_id;
+          this.imagenActual = producto.imagen || null;
           console.log('Producto cargado:', producto);
           
         } else {
@@ -73,19 +76,27 @@ export class ProductPutComponent implements OnInit {
     );
   }
 
-  updateProducto() {
-  const producto = {
-    id: this.id,
-    tipo_producto: this.tipo_producto,
-    nombre: this.nombre,
-    descripcion: this.descripcion,
-    unidades: this.unidades,
-    precio_unidad: this.precio_unidad,
-    finca_id: this.finca_id,
-  };
+  seleccionarImagen(event: any){
+    this.nuevaImagen = event.target.files[0];
+    if(this.nuevaImagen){
+      this.imagenActual = null;
+    }
+  }
 
-  console.log(producto); 
-  this.productosService.actualizarProducto(producto).subscribe(
+  updateProducto() {
+  const producto = new FormData();
+  producto.append('tipo_producto', this.tipo_producto);
+  producto.append('nombre', this.nombre);
+  producto.append('descripcion', this.descripcion);
+  producto.append('unidades', this.unidades.toString());
+  producto.append('precio_unidad', this.precio_unidad.toString());
+  producto.append('finca_id', this.finca_id.toString());
+
+  if(this.nuevaImagen){
+    producto.append('imagen', this.nuevaImagen);
+  }
+  
+  this.productosService.actualizarProducto(this.id, producto).subscribe(
     () => 
       console.log('Producto actualizado')
     );

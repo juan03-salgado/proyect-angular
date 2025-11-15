@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+    <div class="login-logo text-center mb-3">
+      <img src="https://cdn-icons-png.flaticon.com/128/709/709699.png" alt="usuario">
+    </div>
+
+    <h1 class="text-center fs-3 fw-bold text-uppercase mb-4">Registro</h1>
+
+    <form (ngSubmit)="registrarUsuario()" class="d-flex flex-column gap-3 text-white">
+      <div class="mb-3">
+        <label for="nombre_user" class="form-label">Nombre de usuario</label>
+        <input type="text" id="nombre_user" class="form-control" [(ngModel)]="nombre_user" name="nombre_user" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Correo electronico</label>
+        <input type="email" id="email" class="form-control" [(ngModel)]="email" name="email" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="contrasena" class="form-label">Contraseña</label>
+        <input type="password" id="contrasena" class="form-control" [(ngModel)]="contrasena" name="contrasena" required>
+        <span
+          class="eye-icon"
+          onclick="const p = this.previousElementSibling; p.type = p.type === 'password' ? 'text' : 'password';">
+          👁️
+        </span>
+      </div>
+
+      <div class="mb-3">
+        <label for="confirmarContrasena" class="form-label">Confirmar contraseña</label>
+        <input type="password" id="nombre_user" class="form-control" [(ngModel)]="confirmarContrasena" name="confirmarContrasena" required>
+         <span class="eye-icon"onclick="const p = this.previousElementSibling; p.type = p.type === 'password' ? 'text' : 'password';">
+          👁️
+        </span>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Registrarse</button>
+    </form>
+
+    <div class="text-center mt-3 text-white">
+        <p>¿Ya tienes cuenta?
+        <a [routerLink]="['/login']" class="text-dark fw-bold">Iniciar Sesión</a>
+        </p>
+    </div>
+</div>
+</body> 
+</html>

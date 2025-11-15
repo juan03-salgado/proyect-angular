@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ClientesService } from '../../../service/clientes.service';
-import { Usuarios } from '../../../entitys/usuarios';
 
 @Component({
   selector: 'app-clientes-put',
@@ -16,7 +15,7 @@ export class ClientesPutComponent implements OnInit{
   nombre: string = '';
   direccion: string = '';
   telefono: string = '';
-  id_user: number = 0;
+  rol: number = 0;
 
   constructor(private clientesService: ClientesService,
     private route: ActivatedRoute,
@@ -40,7 +39,7 @@ export class ClientesPutComponent implements OnInit{
           this.nombre = cliente.nombre;
           this.direccion = cliente.direccion;
           this.telefono = cliente.telefono;
-          this.id_user = cliente.id_user;
+          this.rol = cliente.rol;
         } else {
           // @ts-ignore
           Swal.fire({
@@ -55,7 +54,7 @@ export class ClientesPutComponent implements OnInit{
   }
   
   updateCliente(): void {                                     
-    const cliente = { id: this.id, nombre: this.nombre, direccion: this.direccion, telefono: this.telefono, id_user: this.id_user}; 
+    const cliente = { id: this.id, nombre: this.nombre, direccion: this.direccion, telefono: this.telefono, id_user: this.rol}; 
     console.log(cliente);                                                
     this.clientesService.actualizarCliente(cliente).subscribe(   
       () => console.log('Cliente actualizado')                          

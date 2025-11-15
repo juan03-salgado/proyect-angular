@@ -2,15 +2,67 @@
   margin: 10px;   
   border-radius: 12px; 
   width: 100%;          
-  max-width: 25rem;    
+  max-width: 25rem;   
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;  
 }
+
+.card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
 .card-text {
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.card .btn{
+  border-radius: 25px;
+  margin-top: auto;
+}
+
+.card-body{
+  display: flex; 
+  flex-direction: column; 
+  height: 100%;
 }
 
 .dashboard-content{
-    margin-left: 270px;
-    overflow: hidden;
+  margin-left: 270px;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  margin: 20px auto;
+  gap: 10px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 1px solid #ced4da;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.search-box button {
+  border-radius: 25px;
+  padding: 8px 20px;
+  background-color: #34d399;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.search-box button:hover {
+  background-color: #10b981;
 }
 
 .top-banner {
@@ -21,18 +73,54 @@
   border-radius: 15px;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1024px) {
+  .dashboard-content {
+    margin-left: 200px;
+  }
+
   .card {
     max-width: 22rem;
   }
 }
 
 @media (max-width: 768px) {
+  .dashboard-content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .search-box {
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .card {
-    max-width: 20rem;
+    max-width: 18rem;
+  }
+
+  .top-banner {
+    height: 150px;
   }
 }
 
+@media (max-width: 480px) {
+  .card {
+    max-width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  .top-banner {
+    height: 120px;
+  }
+
+  .search-box {
+    max-width: 100%;
+  }
+
+  .search-box input {
+    width: 100%;
+  }
+}
 
 
 
