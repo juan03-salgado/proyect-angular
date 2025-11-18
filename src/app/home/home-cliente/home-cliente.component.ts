@@ -111,8 +111,5 @@ export class HomeClienteComponent implements OnInit{
       console.error('Error al cargar las fincas:', error);
     }
 }
-  getNombreFinca(id: number): string {                            
-  const finca = this.fincas.find(a => a.id === id);
-  return finca ? finca.nombre : 'Desconocido';
-  }
+
 }

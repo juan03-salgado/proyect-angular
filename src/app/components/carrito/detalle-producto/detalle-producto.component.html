@@ -1,0 +1,37 @@
+<div class="container my-5" *ngIf="producto">
+  <div class="row justify-content-center">
+
+<div class="col-12 col-md-10">
+<div class="card shadow-lg border-0 rounded-4 p-4">
+  <div class="row g-5">
+    <div class="col-12 col-md-5 text-center">
+      <div class="p-3 bg-light rounded-4 shadow-sm">
+        <img *ngIf="producto?.imagen" [src]="'https://agot-zaox.onrender.com/uploads/' + producto.imagen" alt="{{ producto.nombre }}" class="img-fluid rounded-4" style="max-height: 420px; width: 100%; object-fit: cover;">
+        </div>
+    </div>
+
+    <div class="col-12 col-md-7">
+        <h1 class="fw-bold text-dark mb-3">{{ producto.nombre }}</h1>
+
+    <p class="text-secondary mb-4 fs-5"><i class="bi bi-house-door"></i><strong> Finca productora:</strong> 
+        {{ producto.fincaNombre }}
+    </p>
+
+    <hr>
+        <p class="text-muted fs-5 mb-4">{{ producto.descripcion }}</p>
+        <h3 class="text-success fw-bold mb-3">
+            $ {{ producto.precio_unidad }}
+        </h3>
+        <p class="fs-5 mb-4"><strong>Unidades disponibles:</strong> 
+            {{ producto.unidades }}
+        </p>
+    <hr>
+        <button class="btn btn-success w-100 p-3 fs-5 rounded-3 shadow-sm mt-4" (click)="agregarCarrito()">
+            <i class="bi bi-cart2"></i> Agregar al carrito
+        </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>

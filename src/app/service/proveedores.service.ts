@@ -8,7 +8,7 @@ import { Proveedores } from '../entitys/proveedores';
 })
 export class ProveedoresService {
 
-  private api: string = 'http://localhost:3000/proveedores';
+  private api: string = 'https://agot-zaox.onrender.com/proveedores';
 
   constructor(private http:HttpClient) { }
 

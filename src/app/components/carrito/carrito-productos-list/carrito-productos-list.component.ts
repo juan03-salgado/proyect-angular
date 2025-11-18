@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { carritoProductos } from '../../entitys/carritoProductos';
-import { CarritoProductosService } from '../../service/carrito-productos.service';
+import { carritoProductos } from '../../../entitys/carritoProductos';
+import { CarritoProductosService } from '../../../service/carrito-productos.service';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { Compras } from '../../entitys/compras';
-import { ComprasService } from '../../service/compras.service';
+import { Compras } from '../../../entitys/compras';
+import { ComprasService } from '../../../service/compras.service';
 
 @Component({
   selector: 'app-carrito-productos-list',
@@ -103,7 +103,33 @@ export class CarritoProductosListComponent implements OnInit {
       });
     }
   });
-}
+};
+
+  cambiarCantidad(producto: carritoProductos, cambio: number){
+    const nuevaCantidad = producto.cantidad + cambio;
+
+    if(nuevaCantidad < 1){
+      this.deleteProductoCarrito(producto.id);
+      return;
+    }
+
+    if(nuevaCantidad > producto.producto!.unidades){
+    //@ts-ignore
+    Swal.fire({
+      position: 'top',
+      icon: 'warning',
+      title: 'Stock insuficiente',
+      text: `Solo hay ${producto.producto!.unidades} unidades disponibles.`
+    });    
+    return;
+  }
+
+    const nuevoPrecio = nuevaCantidad * producto.producto!.precio_unidad;
+    const actualizado = {id: producto.id, id_producto: producto.producto!.id, cantidad: nuevaCantidad, precio_total: nuevoPrecio ,id_carrito: producto.id_carrito};
+    this.productosCarritoService.actualizarProductoCarrito(actualizado).subscribe(
+      () => this.listCarritoProductos(),
+    )
+  }
 
   deleteProductoCarrito(id: number){
     // @ts-ignore
@@ -122,10 +148,4 @@ export class CarritoProductosListComponent implements OnInit {
   });
 };
 
-  editProductoCarrito(productosCarrito: carritoProductos){
-    console.log(productosCarrito)
-    this.productosCarritoService.actualizarProductoCarrito(productosCarrito).subscribe(
-      () => this.listCarritoProductos()
-    );
-  }
 }

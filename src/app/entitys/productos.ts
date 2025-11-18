@@ -7,6 +7,7 @@ export class Productos {
         public unidades: number,
         public precio_unidad: number,
         public finca_id: number,
+        public fincaNombre?: string,
         public imagen: string | null = null
     ) { }
 }

@@ -9,7 +9,7 @@ import { Fincas } from '../entitys/fincas';
 
 export class FincasService {
 
-  private api: string = 'http://localhost:3000/fincas'; 
+  private api: string = 'https://agot-zaox.onrender.com/fincas'; 
 
   constructor(private http: HttpClient) { }      
   

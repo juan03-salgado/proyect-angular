@@ -9,12 +9,12 @@ import { Proveedores } from '../entitys/proveedores';
 })
 export class InsumosService {
 
-  private api: string = 'http://localhost:3000/insumos';
+  private api: string = 'https://agot-zaox.onrender.com/insumos';
 
   constructor(private http: HttpClient) { }
 
   getProveedores(): Observable<any>{
-    return this.http.get<Proveedores>('http://localhost:3000/proveedores');
+    return this.http.get<Proveedores>('https://agot-zaox.onrender.com/proveedores');
   }
   
   getInsumos(): Observable<Insumos[]>{

@@ -9,12 +9,12 @@ import { Productos } from '../entitys/productos';
 })
 export class CarritoProductosService {
 
-  private api: string = 'http://localhost:3000/productosCarrito'
+  private api: string = 'https://agot-zaox.onrender.com/productosCarrito'
 
   constructor(private http: HttpClient) { }
 
     getProductos(): Observable<Productos[]>{
-      return this.http.get<Productos[]>('http://localhost:3000/productos')
+      return this.http.get<Productos[]>('https://agot-zaox.onrender.com/productos')
     }
   
     getCarritoProductos(): Observable<carritoProductos[]> {

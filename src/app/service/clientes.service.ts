@@ -9,12 +9,12 @@ import { Usuarios } from '../entitys/usuarios';
 })
 export class ClientesService {
 
-  private api: string = 'http://localhost:3000/clientes';
+  private api: string = 'https://agot-zaox.onrender.com/clientes';
 
   constructor(private http: HttpClient) { }
 
   getUsuarios(): Observable<Usuarios[]> {
-    return this.http.get<Usuarios[]>('http://localhost:3000/usuarios');
+    return this.http.get<Usuarios[]>('https://agot-zaox.onrender.com/usuarios');
   }
 
   getClientes(): Observable<Clientes[]> {

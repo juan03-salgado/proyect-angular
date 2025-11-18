@@ -19,28 +19,31 @@
         <input type="text" id="nombre_user" class="form-control" [(ngModel)]="nombre_user" name="nombre_user" required>
       </div>
 
-      <div class="mb-3">
+    <div class="mb-3">
         <label for="email" class="form-label">Correo electronico</label>
-        <input type="email" id="email" class="form-control" [(ngModel)]="email" name="email" required>
+        <input #emailInput="ngModel" type="email" id="email" class="form-control" [(ngModel)]="email" name="email" required pattern="^[a-zA-Z0-9._%+-]+@(gmail\.com|hotmail\.com|outlook\.com|yahoo\.com)$">      
+      <div *ngIf="emailInput.invalid && emailInput.touched" class="text-white text-center">
+        Solo se permiten correos Gmail, Hotmail, Outlook o Yahoo.
       </div>
+    </div>
 
-      <div class="mb-3">
-        <label for="contrasena" class="form-label">Contraseña</label>
-        <input type="password" id="contrasena" class="form-control" [(ngModel)]="contrasena" name="contrasena" required>
+    <div class="mb-3">
+      <label for="contrasena" class="form-label">Contraseña</label>
+      <input type="password" id="contrasena" class="form-control" [(ngModel)]="contrasena" name="contrasena" required>
         <span
           class="eye-icon"
           onclick="const p = this.previousElementSibling; p.type = p.type === 'password' ? 'text' : 'password';">
           👁️
         </span>
-      </div>
+    </div>
 
-      <div class="mb-3">
-        <label for="confirmarContrasena" class="form-label">Confirmar contraseña</label>
-        <input type="password" id="nombre_user" class="form-control" [(ngModel)]="confirmarContrasena" name="confirmarContrasena" required>
-         <span class="eye-icon"onclick="const p = this.previousElementSibling; p.type = p.type === 'password' ? 'text' : 'password';">
+    <div class="mb-3">
+      <label for="confirmarContrasena" class="form-label">Confirmar contraseña</label>
+      <input type="password" id="nombre_user" class="form-control" [(ngModel)]="confirmarContrasena" name="confirmarContrasena" required>
+        <span class="eye-icon"onclick="const p = this.previousElementSibling; p.type = p.type === 'password' ? 'text' : 'password';">
           👁️
         </span>
-      </div>
+    </div>
 
       <button type="submit" class="btn btn-primary">Registrarse</button>
     </form>

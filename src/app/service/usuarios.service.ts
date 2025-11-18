@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class UsuariosService {
 
-  private api: string = 'http://localhost:3000/usuarios'
+  private api: string = 'https://agot-zaox.onrender.com/usuarios'
 
   constructor(private http: HttpClient) { }
 

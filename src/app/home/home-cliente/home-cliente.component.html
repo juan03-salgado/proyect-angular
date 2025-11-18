@@ -35,10 +35,10 @@
   <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor = "let producto of productoFiltrado | paginate: {itemsPerPage: 8, currentPage: paginaActual}">
     <div class="card h-100 shadow-sm border-success">
       <div class="card-body">
-        <img *ngIf="producto.imagen" [src]="producto.imagen" alt="{{ producto.nombre }}" style="width:100%; height:200px; object-fit:cover;">
+        <img *ngIf="producto.imagen" [src]="'https://agot-zaox.onrender.com/uploads/' + producto.imagen"  alt="{{ producto.nombre }}" style="width:100%; height:200px; object-fit:cover; cursor: pointer;" [routerLink]="['/detalleProducto', producto.id]">
         <h4 class="card-title text-info text-uppercase lh-lg text-center">{{ producto.nombre }}</h4>
-        <p class="card-text">Descripción: {{ producto.descripcion }}</p>
-        <p class="card-text">Finca productora: {{ getNombreFinca(producto.finca_id) }}</p>
+        <p class="card-text">Descripción: {{ producto.descripcion | slice:0:50}}{{producto.descripcion.length > 50 ? '....': ''}}</p>
+        <p class="card-text">Finca: {{ producto.fincaNombre }}</p>
         <p class="card-text">Unidades disponibles: {{ producto.unidades }}</p>
 
          <div class="mt-auto d-flex justify-content-between align-items-center border-top pt-2">
