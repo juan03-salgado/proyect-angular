@@ -43,13 +43,13 @@
     <tbody>
       <tr *ngFor="let producto of productoFiltrado | paginate: {itemsPerPage: 6, currentPage: paginaActual}">
         <th scope="row">{{ producto.id }}</th>
-        <td class="text-center"><img *ngIf="producto.imagen" [src]="producto.imagen" alt="{{ producto.nombre }}" style="width:40px; height:40px; object-fit:cover;"></td>        
+        <td class="text-center"><img *ngIf="producto.imagen" [src]="'https://agot-zaox.onrender.com/uploads/' + producto.imagen"  alt="{{ producto.nombre }}" style="width:40px; height:40px; object-fit:cover;"></td>        
         <td>{{ producto.tipo_producto }}</td>
         <td>{{ producto.nombre }}</td>
-        <td>{{ producto.descripcion }}</td>
+        <td class="text-wrap text-break w-25">{{ producto.descripcion }}</td>
         <td>{{ producto.unidades }}</td>
         <td>{{ producto.precio_unidad }}$</td>   
-        <td>{{ getNombreFinca(producto.finca_id) }}</td>
+        <td>{{ producto.fincaNombre }}</td>
         <td>
           <div class="btn-group" role="group">
             <a class="btn btn-primary bi-pencil" [routerLink]="['/product/edit', producto.id]">Editar</a>

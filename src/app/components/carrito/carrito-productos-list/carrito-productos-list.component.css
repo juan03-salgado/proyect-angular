@@ -1,0 +1,10 @@
+.btn-cantidad {
+  background-color: white;
+  border: 2px solid rgb(62, 170, 62);
+  transition: 0.2s ease-in-out;
+}
+
+.btn-cantidad:hover {
+  background-color: rgb(62, 170, 62);;
+  color: white;
+}

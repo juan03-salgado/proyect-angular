@@ -19,7 +19,9 @@
     <tbody>
       <tr *ngFor="let producto of productosCarrito">
         <td class="text-center">{{ producto.producto?.nombre }}</td>
-        <td class="text-center">{{ producto.cantidad }}</td>
+        <td class="text-center"> <button class="btn btn-cantidad rounded-circle p-0" style="width:30px;height:30px;" (click)="cambiarCantidad(producto, 1)">+</button>
+          {{ producto.cantidad }}
+        <button class="btn btn-cantidad rounded-circle p-0" style="width:30px;height:30px;" (click)="cambiarCantidad(producto, -1)">-</button></td>
         <td class="text-center">${{ producto.producto?.precio_unidad }}</td>
         <td class="text-center">${{ producto.precio_total }}</td>
         <td class="text-center">

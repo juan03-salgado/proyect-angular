@@ -8,7 +8,7 @@ import { Compras } from '../entitys/compras';
 })
 export class ComprasService {
 
-  private api: string = 'http://localhost:3000/compras'
+  private api: string = 'https://agot-zaox.onrender.com/compras'
 
   constructor(private http: HttpClient) { }
 

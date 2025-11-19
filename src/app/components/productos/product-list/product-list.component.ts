@@ -65,11 +65,6 @@ export class ProductListComponent implements OnInit {
     }
 }
 
-  getNombreFinca(id: number): string {                            
-  const finca = this.fincas.find(a => a.id === id);
-  return finca ? finca.nombre : 'Desconocido';
-}
-
   deleteProductos(id: number){
     // @ts-ignore
     Swal.fire({

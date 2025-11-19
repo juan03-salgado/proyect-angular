@@ -16,12 +16,13 @@ import { ProveedorAddComponent } from './components/proveedor/proveedor-add/prov
 import { ProveedorPutComponent } from './components/proveedor/proveedor-put/proveedor-put.component';
 import { ClientesListComponent } from './components/clientes/clientes-list/clientes-list.component';
 import { HomeClienteComponent } from './home/home-cliente/home-cliente.component'; 
-import { CarritoProductosListComponent } from './components/carrito-productos-list/carrito-productos-list.component';
+import { CarritoProductosListComponent } from './components/carrito/carrito-productos-list/carrito-productos-list.component';
 import { ComprasListComponent } from './components/compras-list/compras-list.component';
 import { FacturaComponent } from './components/factura/factura.component';
 import { RegistroComponent } from './auth/registro/registro.component';
 import { PerfilClienteComponent } from './auth/perfil-cliente/perfil-cliente.component';
 import { HistorialClienteComponent } from './components/historial-cliente/historial-cliente.component';
+import { DetalleProductoComponent } from './components/carrito/detalle-producto/detalle-producto.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -46,5 +47,6 @@ export const routes: Routes = [
     {path: 'compras', component: ComprasListComponent, canActivate: [authGuard]},
     {path: 'carritoProductos', component: CarritoProductosListComponent, canActivate: [authGuard]},
     {path: 'factura', component: FacturaComponent, canActivate: [authGuard]},
-    {path: 'historial', component: HistorialClienteComponent, canActivate: [authGuard]}                  
+    {path: 'historial', component: HistorialClienteComponent, canActivate: [authGuard]},
+    {path: 'detalleProducto/:id', component: DetalleProductoComponent, canActivate: [authGuard]}                 
 ];

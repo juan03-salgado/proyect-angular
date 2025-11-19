@@ -21,7 +21,7 @@ export class ProductPutComponent implements OnInit {
   precio_unidad: number = 0;
   finca_id: number = 0;
   nuevaImagen: File | null = null;
-  imagenActual: string | File | null = null;
+  imagenActual: string | null = null;
 
   fincas: any[] = [];
   categorias: string[] = ['Vegetales', 'Frutas', 'Carnes', 'Lacteos']
@@ -54,27 +54,31 @@ export class ProductPutComponent implements OnInit {
     }
   }
 
-  loadProducto(id: number) {
-    this.productosService.getProductos().subscribe(
-      data => {
-        const producto = data.find(prod => prod.id === id);
-        if (producto) {
-          this.id = producto.id;
-          this.tipo_producto = producto.tipo_producto;
-          this.nombre = producto.nombre;
-          this.descripcion = producto.descripcion;
-          this.unidades = producto.unidades;
-          this.precio_unidad = producto.precio_unidad;
-          this.finca_id = producto.finca_id;
-          this.imagenActual = producto.imagen || null;
-          console.log('Producto cargado:', producto);
-          
-        } else {
-          console.error('Producto no encontrado');
-        }
+loadProducto(id: number) {
+  this.productosService.getProductosId(id).subscribe(
+    (producto: any) => {
+      if (producto) {
+        this.id = producto.id;
+        this.tipo_producto = producto.tipo_producto;
+        this.nombre = producto.nombre;
+        this.descripcion = producto.descripcion;
+        this.unidades = producto.unidades;
+        this.precio_unidad = producto.precio_unidad;
+        this.finca_id = producto.finca_id;
+
+      if(producto.imagen){
+          this.imagenActual = `https://agot-zaox.onrender.com/uploads/${producto.imagen}`;
+      } else {
+      this.imagenActual = null;
       }
-    );
-  }
+
+      console.log('Producto cargado:', producto);   
+      } else {
+        console.error('Producto no encontrado');
+      }
+    }
+  );
+}
 
   seleccionarImagen(event: any){
     this.nuevaImagen = event.target.files[0];
@@ -91,6 +95,7 @@ export class ProductPutComponent implements OnInit {
   producto.append('unidades', this.unidades.toString());
   producto.append('precio_unidad', this.precio_unidad.toString());
   producto.append('finca_id', this.finca_id.toString());
+  producto.append('imagenAnterior', this.imagenActual ?.split('/').pop() ?? '');
 
   if(this.nuevaImagen){
     producto.append('imagen', this.nuevaImagen);

@@ -8,7 +8,7 @@ import { Carrito } from '../entitys/carrito';
 })
 export class CarritoService {
 
-  private api: string = 'http://localhost:3000/carrito'
+  private api: string = 'https://agot-zaox.onrender.com/carrito'
 
   constructor(private http: HttpClient) { }
 

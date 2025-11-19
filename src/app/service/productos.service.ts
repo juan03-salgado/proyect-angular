@@ -9,16 +9,20 @@ import { Fincas } from '../entitys/fincas';
 })
 export class ProductosService {
 
-  private api: string = 'http://localhost:3000/productos';
+  private api: string = 'https://agot-zaox.onrender.com/productos';
 
   constructor(private http:HttpClient) { }
 
   getFincas(): Observable<Fincas[]> {
-  return this.http.get<Fincas[]>('http://localhost:3000/fincas');
+  return this.http.get<Fincas[]>('https://agot-zaox.onrender.com/fincas');
 }
 
   getProductos(): Observable<Productos[]> {
     return this.http.get<Productos[]>(this.api);
+  }
+
+  getProductosId(id: number): Observable<Productos>{
+    return this.http.get<Productos>(`${this.api}/${id}`);
   }
 
   crearProducto(producto: FormData): Observable<Productos> {
