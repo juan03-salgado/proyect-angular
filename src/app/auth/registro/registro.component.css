@@ -105,6 +105,13 @@ h1 {
   }
 }
 
+@media (max-height: 600px) {
+  .container {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}
+
 @media(max-width: 480px) {
   .container {
     padding: 1rem;
